@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>История — Парижкият мирен договор</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf6f0;
+    --card: #ffffff;
+    --accent: #8b2c1a;
+    --accent-light: #c9553f;
+    --accent-bg: #fdf0ed;
+    --text: #2c2420;
+    --text-muted: #7a6e64;
+    --border: #e8ddd2;
+    --gold: #c9a84c;
+    --gold-light: #f5ecd0;
+    --success: #3a7d44;
+    --success-bg: #e8f5ea;
+    --error: #b7312c;
+    --error-bg: #fde8e8;
+    --shadow: 0 2px 16px rgba(44,36,32,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #2c2420 0%, #5a2e1e 50%, #8b2c1a 100%);
+    color: #faf6f0;
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: .4rem;
+    position: relative;
+  }
+  .hero p {
+    font-size: .95rem;
+    opacity: .8;
+    position: relative;
+  }
+  .hero .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #2c2420;
+    font-size: .75rem;
+    font-weight: 700;
+    padding: .25rem .75rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    position: relative;
+    letter-spacing: .5px;
+  }
+  .lang-switch {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 20;
+  }
+  .lang-btn {
+    background: rgba(255,255,255,.12);
+    border: 1.5px solid rgba(255,255,255,.25);
+    color: #faf6f0;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: .78rem;
+    font-weight: 600;
+    padding: .35rem .75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .2s;
+    backdrop-filter: blur(4px);
+  }
+  .lang-btn:hover { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.4); }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+
+  .tabs {
+    display: flex;
+    gap: .5rem;
+    margin-bottom: 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    padding: .75rem 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab-btn {
+    flex-shrink: 0;
+    border: none;
+    background: var(--card);
+    color: var(--text-muted);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    padding: .55rem 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .2s;
+    border: 1.5px solid var(--border);
+  }
+  .tab-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .tab-btn:hover:not(.active) { border-color: var(--accent-light); color: var(--accent); }
+
+  .tab-content { display: none; animation: fadeUp .35s ease; }
+  .tab-content.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1.5px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    color: var(--accent);
+    margin-bottom: .75rem;
+  }
+  .card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--accent);
+    margin-bottom: .5rem;
+    margin-top: 1rem;
+  }
+  .card h3:first-child { margin-top: 0; }
+  .card p { margin-bottom: .6rem; font-size: .95rem; }
+
+  .highlight {
+    background: var(--gold-light);
+    border-left: 3px solid var(--gold);
+    padding: .6rem .9rem;
+    border-radius: 0 8px 8px 0;
+    margin: .75rem 0;
+    font-size: .9rem;
+  }
+  .highlight strong { color: var(--accent); }
+
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), var(--accent));
+    border-radius: 2px;
+  }
+  .tl-item { position: relative; margin-bottom: 1.3rem; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--card);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .tl-date {
+    font-size: .78rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+  .tl-text { font-size: .92rem; margin-top: .15rem; }
+
+  .fact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: .75rem; }
+  .fact-box {
+    background: var(--accent-bg);
+    border-radius: 10px;
+    padding: .85rem;
+    text-align: center;
+  }
+  .fact-box .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .fact-box .label { font-size: .78rem; color: var(--text-muted); margin-top: .15rem; }
+
+  .quiz-q {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 1.3rem 1.5rem;
+    margin-bottom: 1rem;
+    border: 1.5px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .quiz-q .q-num {
+    font-size: .7rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: .35rem;
+  }
+  .quiz-q .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.12rem;
+    font-weight: 600;
+    margin-bottom: .85rem;
+    line-height: 1.5;
+  }
+  .q-options { display: flex; flex-direction: column; gap: .45rem; }
+  .q-opt {
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: .6rem 1rem;
+    cursor: pointer;
+    font-size: .9rem;
+    transition: all .2s;
+    background: var(--bg);
+  }
+  .q-opt:hover:not(.disabled) { border-color: var(--accent-light); background: var(--accent-bg); }
+  .q-opt.correct { border-color: var(--success); background: var(--success-bg); color: var(--success); font-weight: 600; }
+  .q-opt.wrong { border-color: var(--error); background: var(--error-bg); color: var(--error); }
+  .q-opt.disabled { cursor: default; opacity: .6; }
+  .q-opt.correct.disabled, .q-opt.wrong.disabled { opacity: 1; }
+  .q-explain {
+    margin-top: .65rem;
+    font-size: .85rem;
+    color: var(--text-muted);
+    padding: .5rem .75rem;
+    border-radius: 8px;
+    background: var(--bg);
+    display: none;
+    line-height: 1.6;
+  }
+  .q-explain.show { display: block; animation: fadeUp .3s ease; }
+
+  .score-bar {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    border: 1.5px solid var(--border);
+    box-shadow: var(--shadow);
+    text-align: center;
+    margin-bottom: 1rem;
+    display: none;
+  }
+  .score-bar.show { display: block; animation: fadeUp .4s ease; }
+  .score-bar .score-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .score-bar .score-label { font-size: .85rem; color: var(--text-muted); }
+  .score-bar .score-msg { margin-top: .5rem; font-size: .95rem; font-weight: 600; }
+
+  .reset-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    padding: .55rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: .75rem;
+    transition: background .2s;
+  }
+  .reset-btn:hover { background: var(--accent-light); }
+
+  .fc-card {
+    perspective: 800px;
+    height: 200px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+  .fc-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform .5s;
+    transform-style: preserve-3d;
+  }
+  .fc-card.flipped .fc-inner { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border: 1.5px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .fc-front {
+    background: var(--card);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .fc-back {
+    background: linear-gradient(135deg, var(--accent) 0%, #5a2e1e 100%);
+    color: #faf6f0;
+    transform: rotateY(180deg);
+    font-size: .95rem;
+    line-height: 1.6;
+  }
+  .fc-hint { font-size: .75rem; color: var(--text-muted); position: absolute; bottom: .75rem; }
+
+  .progress-wrap {
+    display: flex; align-items: center; gap: .75rem;
+    margin-bottom: 1.25rem; font-size: .8rem; color: var(--text-muted);
+  }
+  .progress-track {
+    flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, var(--gold), var(--accent)); border-radius: 3px;
+    transition: width .4s ease;
+  }
+
+  @media (max-width: 520px) {
+    .hero h1 { font-size: 1.6rem; }
+    .fact-grid { grid-template-columns: 1fr; }
+    .card { padding: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="lang-switch">
+    <a href="history_study_guide.html" class="lang-btn">🇷🇺 Русский</a>
+  </div>
+  <div class="badge">📚 Подготовка за урок</div>
+  <h1>Парижкият мирен договор и отношенията със съседните страни</h1>
+  <p>История на България · конспект за една вечер</p>
+</div>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('summary')">📝 Конспект</button>
+    <button class="tab-btn" onclick="switchTab('timeline')">⏳ Хронология</button>
+    <button class="tab-btn" onclick="switchTab('cards')">🃏 Карти</button>
+    <button class="tab-btn" onclick="switchTab('quiz')">✅ Тест</button>
+  </div>
+
+  <!-- ===== КОНСПЕКТ ===== -->
+  <div id="tab-summary" class="tab-content active">
+
+    <div class="card">
+      <h2>1. Московското примирие (1944)</h2>
+      <p>В началото на септември 1944 г. България е в състояние на война с трите големи държави от Антихитлеристката коалиция — СССР, САЩ и Великобритания, а също и с Германия. Прекъснати са отношенията с още 10 държави, между които Франция, Италия, Полша и др.</p>
+      <p>Новото правителство на Отечествения фронт (ОФ) незабавно иска примирие от Антихитлеристката коалиция, а в страната вече се намират съветски войски.</p>
+
+      <div class="highlight">
+        <strong>Дата:</strong> Примирието е подписано в Москва на <strong>28 октомври 1944 г.</strong>
+      </div>
+
+      <h3>Главни клаузи на примирието:</h3>
+      <p>• Великобритания настоява за пълно изтегляне на българските войски и администрация от Беломорието, Македония и Западните покрайнини.</p>
+      <p>• Москва изисква от България да се включи активно във войната срещу Германия.</p>
+      <p>• Създадена е <strong>Съюзна контролна комисия</strong> (представители на СССР, САЩ, Великобритания) — военен орган за контрол върху изпълнението на примирието.</p>
+      <p>• Виновните за включването на страната във войната на страната на Германия трябва да бъдат съдени (Народен съд, края на 1944 — началото на 1945 г.).</p>
+    </div>
+
+    <div class="card">
+      <h2>2. Участие на България във войната срещу Германия</h2>
+      <p>От септември 1944 до май 1945 г. българските войски воюват в състава на <strong>Трети украински фронт</strong>.</p>
+      <div class="fact-grid">
+        <div class="fact-box">
+          <div class="num">32 000</div>
+          <div class="label">убити и ранени</div>
+        </div>
+        <div class="fact-box">
+          <div class="num">1944–45</div>
+          <div class="label">период на участие</div>
+        </div>
+      </div>
+      <p style="margin-top:.75rem">Участието на българската армия в заключителния етап на войната срещу Германия създава предпоставки за по-леки условия на бъдещия мирен договор.</p>
+    </div>
+
+    <div class="card">
+      <h2>3. Парижката мирна конференция (лято 1946)</h2>
+      <p>На конференцията се обсъждат бъдещите мирни договори. Присъстват делегации на всички държави — и на победителките, и на победените, които излагат своите претенции и контрапретенции.</p>
+      <p>Българската делегация е начело с <strong>Васил Коларов</strong> (председател на Народното събрание). Делегацията защитава интересите на България: изтъква се фактът, че страната не е участвала във военни действия като съюзник на Германия и е воювала срещу нея в заключителния етап.</p>
+
+      <div class="highlight">
+        <strong>Подкрепа:</strong> Тракийските организации изпращат няколко меморандума с исторически аргументи за излаз на Бяло море. Българските евреи също изпращат писмо, с което подкрепят правителството и българския народ, припомняйки спасяването на еврейската общност по време на Холокоста.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4. Мирният договор — клаузи</h2>
+      <div class="highlight">
+        <strong>Подписан:</strong> 10 февруари 1947 г. в Париж<br>
+        <strong>В сила от:</strong> 15 септември 1947 г.
+      </div>
+
+      <h3>Териториални</h3>
+      <p>Границите на страната остават такива, каквито са били преди включването на България във войната. Южна Добруджа остава в пределите на държавата, но по-късно присъединените територии в Беломорска Тракия и Македония са загубени.</p>
+
+      <h3>Репарационни</h3>
+      <p>България дължи репарации на двете държави, в които е била окупатор — Югославия и Гърция, в размер общо на <strong>70 млн. долара</strong>.</p>
+
+      <h3>Военни</h3>
+      <p>Българските въоръжени сили са намалени на <strong>65 000</strong> души; въоръжението на армията също е ограничено.</p>
+
+      <h3>Чужди войски</h3>
+      <p>Съветските войски трябва да напуснат страната до края на годината.</p>
+
+      <h3>Съюзна контролна комисия</h3>
+      <p>Престава да съществува и България става самостоятелен субект на международното право.</p>
+    </div>
+
+    <div class="card">
+      <h2>5. Извод</h2>
+      <p>Макар че разпоредбите на Парижкия мирен договор не са крайно тежки, няма как България да бъде удовлетворена. Страната не получава това, заради което се е включила във Втората световна война — <strong>националното обединение</strong>. Присъединяването на Беломорието и Македония трае три години, но страната за пореден път се е наредила на страната на губещите и отново рухва надеждата за обединение на историческите български земи.</p>
+    </div>
+  </div>
+
+  <!-- ===== ТАЙМЛАЙН ===== -->
+  <div id="tab-timeline" class="tab-content">
+    <div class="card">
+      <h2>Хронология на събитията</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">Септември 1944</div>
+          <div class="tl-text">България е в състояние на война с СССР, САЩ, Великобритания и Германия едновременно. Новото правителство на ОФ иска примирие.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">28 октомври 1944</div>
+          <div class="tl-text">Подписване на Московското примирие. Създадена е Съюзна контролна комисия. България е задължена да изтегли войските си от Беломорието, Македония и Западните покрайнини.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Края на 1944 — нач. 1945</div>
+          <div class="tl-text">Народен съд: съдебни процеси срещу виновните за включването на България във войната на страната на Германия.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Септември 1944 — май 1945</div>
+          <div class="tl-text">Българските войски воюват в състава на Трети украински фронт. 32 000 убити и ранени.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Лятото на 1946</div>
+          <div class="tl-text">Парижка мирна конференция. Българската делегация е начело с Васил Коларов.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">10 февруари 1947</div>
+          <div class="tl-text">Подписване на Парижкия мирен договор.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">15 септември 1947</div>
+          <div class="tl-text">Договорът влиза в сила след ратификация. Съюзната контролна комисия престава да съществува. България — субект на международното право.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== КАРТИ ===== -->
+  <div id="tab-cards" class="tab-content">
+    <p style="text-align:center;color:var(--text-muted);margin-bottom:1rem;font-size:.88rem">Натисни картата, за да видиш отговора 👆</p>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Кога и къде е подписано Московското примирие?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">28 октомври 1944 г. в Москва</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Кой оглавява българската делегация в Париж?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Васил Коларов — председател на Народното събрание</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Какъв е размерът на репарациите по Парижкия договор?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">70 млн. долара — на Югославия и Гърция</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">До колко души е намалена армията на България?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">65 000 души</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">В състава на кой фронт воюва България (1944–45)?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Трети украински фронт</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Кога е подписан Парижкият мирен договор?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">10 февруари 1947 г., влиза в сила на 15 септември 1947 г.</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Какво се случва със Съюзната контролна комисия след договора?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Престава да съществува — България става самостоятелен субект на международното право</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Кои територии България губи по договора?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Беломорска Тракия и Македония (Южна Добруджа остава)</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Колко български войници са убити и ранени в 1944–45?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">32 000 убити и ранени</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Какво представлява Народният съд и кога действа?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Съд над виновните за включването във войната на страната на Германия (края на 1944 — нач. 1945)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ТЕСТ ===== -->
+  <div id="tab-quiz" class="tab-content">
+    <div class="score-bar" id="scoreBar">
+      <div class="score-label">Твоят резултат</div>
+      <div class="score-num" id="scoreNum">0/10</div>
+      <div class="score-msg" id="scoreMsg"></div>
+      <button class="reset-btn" onclick="resetQuiz()">Опитай отново</button>
+    </div>
+
+    <div class="progress-wrap">
+      <span id="progText">0 от 10</span>
+      <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+    </div>
+
+    <div id="quizContainer"></div>
+  </div>
+</div>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  const idx = ['summary','timeline','cards','quiz'].indexOf(name);
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+}
+
+const questions = [
+  {
+    q: "Кога е подписано Московското примирие?",
+    opts: ["28 октомври 1944 г.", "10 февруари 1947 г.", "9 май 1945 г.", "15 септември 1947 г."],
+    ans: 0,
+    explain: "Примирието е подписано в Москва на 28 октомври 1944 г."
+  },
+  {
+    q: "Кой оглавява българската делегация на Парижката конференция?",
+    opts: ["Георги Димитров", "Васил Коларов", "Генерал Бирюзов", "Тодор Живков"],
+    ans: 1,
+    explain: "Делегацията е начело с Васил Коларов — председател на Народното събрание."
+  },
+  {
+    q: "Какъв е размерът на репарациите, които България дължи?",
+    opts: ["30 млн. долара", "50 млн. долара", "70 млн. долара", "100 млн. долара"],
+    ans: 2,
+    explain: "България дължи 70 млн. долара на Югославия и Гърция."
+  },
+  {
+    q: "До какъв предел са намалени българските въоръжени сили?",
+    opts: ["45 000", "55 000", "65 000", "80 000"],
+    ans: 2,
+    explain: "Армията е ограничена до 65 000 души."
+  },
+  {
+    q: "В състава на кой фронт воюват българските войски?",
+    opts: ["Първи Белоруски", "Втори Украински", "Трети Украински", "Първи Прибалтийски"],
+    ans: 2,
+    explain: "Българските войски воюват в състава на Трети украински фронт."
+  },
+  {
+    q: "Кога е подписан Парижкият мирен договор?",
+    opts: ["10 февруари 1946 г.", "10 февруари 1947 г.", "15 септември 1947 г.", "28 октомври 1944 г."],
+    ans: 1,
+    explain: "Договорът е подписан на 10 февруари 1947 г. и влиза в сила на 15 септември 1947 г."
+  },
+  {
+    q: "Коя територия остава в състава на България след договора?",
+    opts: ["Беломорска Тракия", "Западните покрайнини", "Южна Добруджа", "Македония"],
+    ans: 2,
+    explain: "Южна Добруджа остава в пределите на България, останалите територии са загубени."
+  },
+  {
+    q: "Какво се случва със Съюзната контролна комисия?",
+    opts: ["Преименувана в ООН", "Предадена на Югославия", "Престава да съществува", "Остава до 1950 г."],
+    ans: 2,
+    explain: "Комисията престава да съществува и България става субект на международното право."
+  },
+  {
+    q: "Колко убити и ранени дава българската армия в 1944–1945?",
+    opts: ["12 000", "22 000", "32 000", "42 000"],
+    ans: 2,
+    explain: "Българската армия дава 32 000 убити и ранени."
+  },
+  {
+    q: "Какъв аргумент използват българските евреи в подкрепа на България?",
+    opts: ["Икономически принос", "Спасяването на еврейската общност по време на Холокоста", "Военна помощ за Израел", "Културни връзки"],
+    ans: 1,
+    explain: "Българските евреи припомнят спасяването на еврейската общност в България по време на Холокоста."
+  }
+];
+
+let answered = 0, correct = 0;
+
+function buildQuiz() {
+  const c = document.getElementById('quizContainer');
+  c.innerHTML = '';
+  answered = 0; correct = 0;
+  updateProgress();
+  document.getElementById('scoreBar').classList.remove('show');
+
+  questions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q';
+    div.innerHTML = `
+      <div class="q-num">Въпрос ${i+1}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-options" id="opts-${i}">
+        ${q.opts.map((o,j) => `<div class="q-opt" data-q="${i}" data-o="${j}" onclick="answer(${i},${j})">${o}</div>`).join('')}
+      </div>
+      <div class="q-explain" id="expl-${i}">${q.explain}</div>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function answer(qi, oi) {
+  const opts = document.querySelectorAll(`#opts-${qi} .q-opt`);
+  if (opts[0].classList.contains('disabled')) return;
+  answered++;
+  if (oi === questions[qi].ans) correct++;
+
+  opts.forEach((o, j) => {
+    o.classList.add('disabled');
+    if (j === questions[qi].ans) o.classList.add('correct');
+    else if (j === oi) o.classList.add('wrong');
+  });
+
+  document.getElementById(`expl-${qi}`).classList.add('show');
+  updateProgress();
+
+  if (answered === questions.length) showScore();
+}
+
+function updateProgress() {
+  document.getElementById('progText').textContent = `${answered} от ${questions.length}`;
+  document.getElementById('progFill').style.width = (answered / questions.length * 100) + '%';
+}
+
+function showScore() {
+  const bar = document.getElementById('scoreBar');
+  bar.classList.add('show');
+  document.getElementById('scoreNum').textContent = `${correct}/${questions.length}`;
+  const pct = correct / questions.length;
+  const msg = pct === 1 ? '🌟 Отлично! Знаеш всичко!' :
+              pct >= 0.7 ? '👍 Добър резултат! Повтори грешките.' :
+              pct >= 0.5 ? '📖 Не е зле, но си прочети конспекта отново.' :
+              '📚 Прочети конспекта още веднъж и опитай пак!';
+  document.getElementById('scoreMsg').textContent = msg;
+  bar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function resetQuiz() {
+  buildQuiz();
+  window.scrollTo({ top: document.getElementById('tab-quiz').offsetTop - 80, behavior: 'smooth' });
+}
+
+buildQuiz();
+</script>
+</body>
+</html>
