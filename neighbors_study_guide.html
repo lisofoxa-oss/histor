@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>История — Болгария и её соседи</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f1eb;
+    --card: #ffffff;
+    --accent: #1a4a6b;
+    --accent-light: #2d7ab6;
+    --accent-bg: #edf4fa;
+    --text: #1e2328;
+    --text-muted: #64707a;
+    --border: #d5dce3;
+    --gold: #b8860b;
+    --gold-light: #fdf5e0;
+    --success: #2e7d32;
+    --success-bg: #e8f5e9;
+    --error: #c62828;
+    --error-bg: #ffebee;
+    --shadow: 0 2px 16px rgba(30,35,40,0.07);
+    --country-yu: #6a1b9a;
+    --country-gr: #0d47a1;
+    --country-tr: #bf360c;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b3a4b 50%, #1a4a6b 100%);
+    color: #f4f1eb;
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content:'';
+    position:absolute; inset:0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2l2 3-2 3zM0 20h20v2H0v-2z' fill='%23ffffff' fill-opacity='.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.1rem; font-weight: 700;
+    margin-bottom: .4rem; position: relative;
+  }
+  .hero p { font-size: .95rem; opacity: .75; position: relative; }
+  .hero .badge {
+    display:inline-block; background:var(--gold); color:#1e2328;
+    font-size:.75rem; font-weight:700;
+    padding:.25rem .75rem; border-radius:20px;
+    margin-bottom:1rem; position:relative; letter-spacing:.5px;
+  }
+  .lang-switch { position:absolute; top:1rem; right:1rem; z-index:20; }
+  .lang-btn {
+    background:rgba(255,255,255,.12);
+    border:1.5px solid rgba(255,255,255,.25);
+    color:#f4f1eb;
+    font-family:'Source Sans 3',sans-serif;
+    font-size:.78rem; font-weight:600;
+    padding:.35rem .75rem; border-radius:8px;
+    cursor:pointer; transition:all .2s;
+    text-decoration:none; backdrop-filter:blur(4px);
+  }
+  .lang-btn:hover { background:rgba(255,255,255,.22); }
+
+  .container { max-width:720px; margin:0 auto; padding:1.5rem 1rem 3rem; }
+
+  .tabs {
+    display:flex; gap:.5rem; margin-bottom:1.5rem;
+    position:sticky; top:0; z-index:10;
+    background:var(--bg); padding:.75rem 0;
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+  }
+  .tab-btn {
+    flex-shrink:0; border:none; background:var(--card);
+    color:var(--text-muted);
+    font-family:'Source Sans 3',sans-serif;
+    font-size:.85rem; font-weight:600;
+    padding:.55rem 1.1rem; border-radius:10px;
+    cursor:pointer; transition:all .2s;
+    border:1.5px solid var(--border);
+  }
+  .tab-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .tab-btn:hover:not(.active) { border-color:var(--accent-light); color:var(--accent); }
+
+  .tab-content { display:none; animation:fadeUp .35s ease; }
+  .tab-content.active { display:block; }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(12px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+
+  .card {
+    background:var(--card); border-radius:14px;
+    padding:1.5rem; margin-bottom:1rem;
+    border:1.5px solid var(--border); box-shadow:var(--shadow);
+  }
+  .card h2 { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--accent); margin-bottom:.75rem; }
+  .card h3 { font-family:'Cormorant Garamond',serif; font-size:1.1rem; margin-bottom:.5rem; margin-top:1rem; }
+  .card h3:first-child { margin-top:0; }
+  .card p { margin-bottom:.6rem; font-size:.95rem; }
+
+  .country-tag {
+    display:inline-block; font-size:.7rem; font-weight:700;
+    padding:.15rem .55rem; border-radius:6px; letter-spacing:.5px;
+    margin-bottom:.5rem; color:#fff;
+  }
+  .tag-yu { background:var(--country-yu); }
+  .tag-gr { background:var(--country-gr); }
+  .tag-tr { background:var(--country-tr); }
+
+  .highlight {
+    background:var(--gold-light); border-left:3px solid var(--gold);
+    padding:.6rem .9rem; border-radius:0 8px 8px 0;
+    margin:.75rem 0; font-size:.9rem;
+  }
+  .highlight strong { color:var(--accent); }
+
+  .warn-box {
+    background:#fff3e0; border-left:3px solid #ff9800;
+    padding:.6rem .9rem; border-radius:0 8px 8px 0;
+    margin:.75rem 0; font-size:.9rem;
+  }
+
+  .timeline { position:relative; padding-left:2rem; }
+  .timeline::before {
+    content:''; position:absolute; left:6px; top:4px; bottom:4px;
+    width:2px; background:linear-gradient(to bottom, var(--gold), var(--accent)); border-radius:2px;
+  }
+  .tl-item { position:relative; margin-bottom:1.3rem; }
+  .tl-item::before {
+    content:''; position:absolute; left:-2rem; top:6px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--accent); border:2px solid var(--card);
+    box-shadow:0 0 0 2px var(--accent);
+  }
+  .tl-date { font-size:.78rem; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:.3px; }
+  .tl-text { font-size:.92rem; margin-top:.15rem; }
+
+  .quiz-q {
+    background:var(--card); border-radius:14px;
+    padding:1.3rem 1.5rem; margin-bottom:1rem;
+    border:1.5px solid var(--border); box-shadow:var(--shadow);
+  }
+  .quiz-q .q-num { font-size:.7rem; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:.35rem; }
+  .quiz-q .q-text { font-family:'Cormorant Garamond',serif; font-size:1.12rem; font-weight:600; margin-bottom:.85rem; line-height:1.5; }
+  .q-options { display:flex; flex-direction:column; gap:.45rem; }
+  .q-opt {
+    border:1.5px solid var(--border); border-radius:10px;
+    padding:.6rem 1rem; cursor:pointer; font-size:.9rem;
+    transition:all .2s; background:var(--bg);
+  }
+  .q-opt:hover:not(.disabled) { border-color:var(--accent-light); background:var(--accent-bg); }
+  .q-opt.correct { border-color:var(--success); background:var(--success-bg); color:var(--success); font-weight:600; }
+  .q-opt.wrong { border-color:var(--error); background:var(--error-bg); color:var(--error); }
+  .q-opt.disabled { cursor:default; opacity:.6; }
+  .q-opt.correct.disabled, .q-opt.wrong.disabled { opacity:1; }
+  .q-explain {
+    margin-top:.65rem; font-size:.85rem; color:var(--text-muted);
+    padding:.5rem .75rem; border-radius:8px; background:var(--bg);
+    display:none; line-height:1.6;
+  }
+  .q-explain.show { display:block; animation:fadeUp .3s ease; }
+
+  .score-bar {
+    background:var(--card); border-radius:14px;
+    padding:1.2rem 1.5rem; border:1.5px solid var(--border);
+    box-shadow:var(--shadow); text-align:center;
+    margin-bottom:1rem; display:none;
+  }
+  .score-bar.show { display:block; animation:fadeUp .4s ease; }
+  .score-bar .score-num { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:700; color:var(--accent); }
+  .score-bar .score-label { font-size:.85rem; color:var(--text-muted); }
+  .score-bar .score-msg { margin-top:.5rem; font-size:.95rem; font-weight:600; }
+  .reset-btn {
+    display:inline-block; background:var(--accent); color:#fff; border:none;
+    font-family:'Source Sans 3',sans-serif; font-size:.85rem; font-weight:600;
+    padding:.55rem 1.5rem; border-radius:10px; cursor:pointer;
+    margin-top:.75rem; transition:background .2s;
+  }
+  .reset-btn:hover { background:var(--accent-light); }
+
+  .fc-card { perspective:800px; height:200px; margin-bottom:1rem; cursor:pointer; }
+  .fc-inner { position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d; }
+  .fc-card.flipped .fc-inner { transform:rotateY(180deg); }
+  .fc-front, .fc-back {
+    position:absolute; inset:0; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    padding:1.5rem; text-align:center;
+    backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    border:1.5px solid var(--border); box-shadow:var(--shadow);
+  }
+  .fc-front {
+    background:var(--card); font-family:'Cormorant Garamond',serif;
+    font-size:1.1rem; font-weight:600; color:var(--accent);
+  }
+  .fc-back {
+    background:linear-gradient(135deg, var(--accent) 0%, #0d1b2a 100%);
+    color:#f4f1eb; transform:rotateY(180deg);
+    font-size:.93rem; line-height:1.6;
+  }
+  .fc-hint { font-size:.75rem; color:var(--text-muted); position:absolute; bottom:.75rem; }
+
+  .progress-wrap {
+    display:flex; align-items:center; gap:.75rem;
+    margin-bottom:1.25rem; font-size:.8rem; color:var(--text-muted);
+  }
+  .progress-track { flex:1; height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
+  .progress-fill { height:100%; background:linear-gradient(90deg, var(--gold), var(--accent)); border-radius:3px; transition:width .4s ease; }
+
+  @media (max-width:520px) {
+    .hero h1 { font-size:1.55rem; }
+    .card { padding:1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="lang-switch">
+    <a href="neighbors_study_guide_bg.html" class="lang-btn">🇧🇬 Български</a>
+  </div>
+  <div class="badge">📚 Подготовка к уроку</div>
+  <h1>Болгария и её соседи</h1>
+  <p>Послевоенные отношения с Югославией, Грецией и Турцией</p>
+</div>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('summary')">📝 Конспект</button>
+    <button class="tab-btn" onclick="switchTab('timeline')">⏳ Хронология</button>
+    <button class="tab-btn" onclick="switchTab('cards')">🃏 Карточки</button>
+    <button class="tab-btn" onclick="switchTab('quiz')">✅ Тест</button>
+  </div>
+
+  <!-- ===== КОНСПЕКТ ===== -->
+  <div id="tab-summary" class="tab-content active">
+
+    <div class="card">
+      <h2>Ключевая идея</h2>
+      <p>Отношения Болгарии с соседями после войны определяются <strong>двумя главными факторами</strong>:</p>
+      <div class="warn-box">
+        1) <strong>Блоковая принадлежность</strong> — Болгария в Восточном блоке, а Греция и Турция вступают в НАТО (1952).<br>
+        2) <strong>Соседство</strong> со странами из обоих блоков — и с Востока (Югославия), и с Запада (Греция, Турция).
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="country-tag tag-yu">🇾🇺 ЮГОСЛАВИЯ</span>
+      <h2>Отношения с Югославией</h2>
+
+      <h3>Сближение и идея федерации</h3>
+      <p>После войны Болгария сближается с Югославией — обе страны идут по пути социализма. Они даже обсуждают создание <strong>федерации</strong>, но цена слишком высока.</p>
+
+      <h3>Македонский вопрос</h3>
+      <p>Югославский лидер <strong>Иосип Броз Тито</strong> требует признать население <strong>Пиринского края</strong> (Благоевградский регион) «македонским» и присоединить область к югославской республике Македония.</p>
+
+      <div class="highlight">
+        <strong>Перепись 1946 г.:</strong> Под давлением БКП насильственно записывает около <strong>70%</strong> болгар в Пиринском крае как «македонцев».
+      </div>
+
+      <p>До передачи Пиринского края Югославии дело не доходит, но население подвергается насилию.</p>
+
+      <h3>Конфликт Сталин — Тито</h3>
+      <p>Из-за протестов Великобритании и конфликта между Сталиным и Тито идея <strong>болгаро-югославской федерации</strong> (изначально поддержанная Сталиным) проваливается.</p>
+
+      <h3>Смена позиции</h3>
+      <p>Лишь в <strong>1963 г.</strong> на пленуме ЦК БКП <strong>Тодор Живков</strong> заявляет, что население Пиринского края — часть болгарской нации, и ни о каком присоединении к македонской нации речи быть не может.</p>
+
+      <div class="warn-box">
+        <strong>Последствие:</strong> Почти два десятилетия «македонизации» Пиринского региона нанесли огромный ущерб национальным интересам и превратили Болгарию в объект обвинений в ООН о подавлении «югославско-македонского меньшинства».
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="country-tag tag-gr">🇬🇷 ГРЕЦИЯ</span>
+      <h2>Отношения с Грецией</h2>
+      <p>Отношения напряжённые из-за <strong>блокового противостояния</strong> — Греция вступает в НАТО в 1952 г.</p>
+
+      <h3>Репарации</h3>
+      <p>По Парижскому договору Болгария должна Греции <strong>45 млн долларов</strong> репараций. Вопрос долго не решается.</p>
+
+      <div class="highlight">
+        <strong>1964 г.:</strong> Достигнуто соглашение — сумма снижена до <strong>7 млн долларов</strong>, которые Болгария выплачивает товарами. Соглашение — результат долгих и трудных переговоров.
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="country-tag tag-tr">🇹🇷 ТУРЦИЯ</span>
+      <h2>Отношения с Турцией</h2>
+      <p>Болгаро-турецкие отношения <strong>наиболее сложные</strong> из-за большого <strong>турецкого меньшинства</strong> в Болгарии — около <strong>10%</strong> населения.</p>
+
+      <h3>Источники напряжённости</h3>
+      <p>• Турция провоцирует несколько волн переселения болгарских турок.</p>
+      <p>• Холодная война и турецкая пропаганда усугубляют отношения.</p>
+      <p>• Как союзник США в НАТО, Турция проводит демонстративные военные манёвры во Фракии, нарушая воздушное пространство Болгарии.</p>
+
+      <div class="warn-box">
+        <strong>Пограничные инциденты:</strong> Турция провоцирует инциденты на границе, ведёт антиболгарскую пропаганду и нагнетает настроения в своей прессе.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Двусторонняя дипломатия</h2>
+      <p>Несмотря на трудности, болгарская дипломатия подписывает <strong>16 соглашений</strong> с Грецией и Турцией в различных сферах: торговля, транспорт, туризм, научно-техническое сотрудничество, культура и др.</p>
+      <p>Резкое снижение суммы репараций (с 45 до 7 млн долларов) считается одним из успехов послевоенной дипломатии.</p>
+    </div>
+  </div>
+
+  <!-- ===== ТАЙМЛАЙН ===== -->
+  <div id="tab-timeline" class="tab-content">
+    <div class="card">
+      <h2>Хронология</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">После 1944</div>
+          <div class="tl-text">Болгария сближается с Югославией. Обе идут по пути социализма. Обсуждается федерация.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1946</div>
+          <div class="tl-text">При переписи населения около 70% болгар в Пиринском крае насильственно записаны как «македонцы».</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1947</div>
+          <div class="tl-text">Парижский договор: 45 млн долларов репараций Греции, 25 млн — Югославии (всего 70 млн).</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1948</div>
+          <div class="tl-text">Конфликт Сталин — Тито. Идея болгаро-югославской федерации проваливается.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1952</div>
+          <div class="tl-text">Греция и Турция вступают в НАТО. Блоковое противостояние усиливается.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1963</div>
+          <div class="tl-text">Пленум ЦК БКП: Тодор Живков заявляет, что Пиринское население — часть болгарской нации. Конец «македонизации».</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1964</div>
+          <div class="tl-text">Соглашение с Грецией: репарации снижены с 45 до 7 млн долларов, выплачены товарами.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">60-е годы</div>
+          <div class="tl-text">Подписано 16 соглашений с Грецией и Турцией в сфере торговли, транспорта, туризма, культуры.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== КАРТОЧКИ ===== -->
+  <div id="tab-cards" class="tab-content">
+    <p style="text-align:center;color:var(--text-muted);margin-bottom:1rem;font-size:.88rem">Нажми на карточку, чтобы увидеть ответ 👆</p>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Какие два фактора определяют отношения Болгарии с соседями?<span class="fc-hint">нажми для ответа</span></div>
+        <div class="fc-back">1) Блоковая принадлежность (Восток vs Запад)<br>2) Соседство со странами из обоих блоков</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Чего требовал Тито от Болгарии по македонскому вопросу?<span class="fc-hint">нажми для ответа</span></div>
+        <div class="fc-back">Признать население Пиринского края «македонским» и присоединить область к югославской Македонии</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Какой % болгар в Пиринском крае записали как «македонцев» в 1946?<span class="fc-hint">нажми для ответа</span></div>
+        <div class="fc-back">Около 70%</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Почему провалилась идея болгаро-югославской федерации?<span class="fc-hint">нажми для ответа</span></div>
+        <div class="fc-back">Из-за протестов Великобритании и конфликта между Сталиным и Тито</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Когда и кто прекратил политику «македонизации»?<span class="fc-hint">нажми для ответа</span></div>
+        <div class="fc-back">1963 г. — Тодор Живков на пленуме ЦК БКП заявил, что Пиринское население — часть болгарской нации</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Сколько репараций должна Болгария Греции и до скольки снижены?<span class="fc-hint">нажми для ответа</span></div>
+        <div class="fc-back">45 млн $ → снижены до 7 млн $ (1964), выплачены товарами</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Когда Греция и Турция вступили в НАТО?<span class="fc-hint">нажми для ответа</span></div>
+        <div class="fc-back">1952 г.</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Почему сложны болгаро-турецкие отношения?<span class="fc-hint">нажми для ответа</span></div>
+        <div class="fc-back">Большое турецкое меньшинство (~10%), Холодная война, пропаганда и военные провокации</div>
+      </div>
+    </div>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Сколько соглашений подписано с Грецией и Турцией?<span class="fc-hint">нажми для ответа</span></div>
+        <div class="fc-back">16 соглашений — торговля, транспорт, туризм, наука, культура</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ТЕСТ ===== -->
+  <div id="tab-quiz" class="tab-content">
+    <div class="score-bar" id="scoreBar">
+      <div class="score-label">Твой результат</div>
+      <div class="score-num" id="scoreNum">0/10</div>
+      <div class="score-msg" id="scoreMsg"></div>
+      <button class="reset-btn" onclick="resetQuiz()">Пройти ещё раз</button>
+    </div>
+    <div class="progress-wrap">
+      <span id="progText">0 из 10</span>
+      <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+    </div>
+    <div id="quizContainer"></div>
+  </div>
+</div>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.querySelectorAll('.tab-btn')[['summary','timeline','cards','quiz'].indexOf(name)].classList.add('active');
+}
+
+const questions = [
+  {
+    q: "Какие два фактора определяют отношения Болгарии с соседями?",
+    opts: ["Религия и язык", "Блоковая принадлежность и соседство", "Торговля и военная сила", "Население и территория"],
+    ans: 1,
+    explain: "Блоковая принадлежность (Восток vs Запад) и соседство со странами из обоих блоков."
+  },
+  {
+    q: "Чего требовал Тито от Болгарии в отношении Пиринского края?",
+    opts: ["Продать его", "Объявить нейтральным", "Признать население «македонским» и присоединить область", "Демилитаризовать"],
+    ans: 2,
+    explain: "Тито требовал признать население «македонским» и присоединить край к югославской Македонии."
+  },
+  {
+    q: "Какой % болгар в Пиринском крае записан как «македонцы» (1946)?",
+    opts: ["30%", "50%", "70%", "90%"],
+    ans: 2,
+    explain: "Около 70% болгар в Пиринском крае были насильственно записаны как «македонцы»."
+  },
+  {
+    q: "Какой конфликт между лидерами похоронил идею федерации?",
+    opts: ["Черчилль — Рузвельт", "Сталин — Тито", "Димитров — Тито", "Живков — Хрущёв"],
+    ans: 1,
+    explain: "Конфликт Сталин — Тито (1948) и протесты Великобритании."
+  },
+  {
+    q: "Когда Тодор Живков прекратил политику по македонскому вопросу?",
+    opts: ["1953 г.", "1958 г.", "1963 г.", "1968 г."],
+    ans: 2,
+    explain: "1963 г. — на пленуме ЦК БКП Живков заявил, что Пиринское население — болгарское."
+  },
+  {
+    q: "Когда Греция и Турция вступили в НАТО?",
+    opts: ["1949 г.", "1952 г.", "1955 г.", "1960 г."],
+    ans: 1,
+    explain: "Греция и Турция стали членами НАТО в 1952 г."
+  },
+  {
+    q: "Какова сумма репараций Греции по Парижскому договору?",
+    opts: ["25 млн $", "35 млн $", "45 млн $", "70 млн $"],
+    ans: 2,
+    explain: "45 млн долларов (из общих 70 млн для Греции и Югославии)."
+  },
+  {
+    q: "До скольки снижены репарации Греции в 1964 г.?",
+    opts: ["3 млн $", "7 млн $", "15 млн $", "25 млн $"],
+    ans: 1,
+    explain: "Снижены с 45 до 7 млн долларов, выплачены товарами."
+  },
+  {
+    q: "Какой % населения Болгарии составляет турецкое меньшинство?",
+    opts: ["Около 5%", "Около 10%", "Около 20%", "Около 30%"],
+    ans: 1,
+    explain: "Турецкое меньшинство — около 10% населения Болгарии."
+  },
+  {
+    q: "Сколько соглашений подписала Болгария с Грецией и Турцией?",
+    opts: ["6", "10", "16", "22"],
+    ans: 2,
+    explain: "16 соглашений в сфере торговли, транспорта, туризма, культуры и др."
+  }
+];
+
+let answered = 0, correct = 0;
+function buildQuiz() {
+  const c = document.getElementById('quizContainer');
+  c.innerHTML = ''; answered = 0; correct = 0;
+  updateProgress();
+  document.getElementById('scoreBar').classList.remove('show');
+  questions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q';
+    div.innerHTML = `
+      <div class="q-num">Вопрос ${i+1}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-options" id="opts-${i}">
+        ${q.opts.map((o,j) => `<div class="q-opt" onclick="answer(${i},${j})">${o}</div>`).join('')}
+      </div>
+      <div class="q-explain" id="expl-${i}">${q.explain}</div>`;
+    c.appendChild(div);
+  });
+}
+function answer(qi, oi) {
+  const opts = document.querySelectorAll(`#opts-${qi} .q-opt`);
+  if (opts[0].classList.contains('disabled')) return;
+  answered++;
+  if (oi === questions[qi].ans) correct++;
+  opts.forEach((o, j) => {
+    o.classList.add('disabled');
+    if (j === questions[qi].ans) o.classList.add('correct');
+    else if (j === oi) o.classList.add('wrong');
+  });
+  document.getElementById(`expl-${qi}`).classList.add('show');
+  updateProgress();
+  if (answered === questions.length) showScore();
+}
+function updateProgress() {
+  document.getElementById('progText').textContent = `${answered} из ${questions.length}`;
+  document.getElementById('progFill').style.width = (answered / questions.length * 100) + '%';
+}
+function showScore() {
+  const bar = document.getElementById('scoreBar');
+  bar.classList.add('show');
+  document.getElementById('scoreNum').textContent = `${correct}/${questions.length}`;
+  const pct = correct / questions.length;
+  document.getElementById('scoreMsg').textContent =
+    pct === 1 ? '🌟 Отлично! Ты всё знаешь!' :
+    pct >= 0.7 ? '👍 Хороший результат! Повтори ошибки.' :
+    pct >= 0.5 ? '📖 Неплохо, но перечитай конспект.' :
+    '📚 Прочитай конспект ещё раз и попробуй снова!';
+  bar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function resetQuiz() {
+  buildQuiz();
+  window.scrollTo({ top: document.getElementById('tab-quiz').offsetTop - 80, behavior: 'smooth' });
+}
+buildQuiz();
+</script>
+</body>
+</html>
