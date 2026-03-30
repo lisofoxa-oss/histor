@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>История — Тоталитарното управление (1948–1989)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f2f0ec;
+    --card: #ffffff;
+    --accent: #7a1a1a;
+    --accent-light: #a93535;
+    --accent-bg: #fdf0f0;
+    --text: #1e2028;
+    --text-muted: #6b6a72;
+    --border: #ddd8d0;
+    --gold: #9e7c2e;
+    --gold-light: #fdf6e3;
+    --success: #2e7d32;
+    --success-bg: #e8f5e9;
+    --error: #c62828;
+    --error-bg: #ffebee;
+    --shadow: 0 2px 16px rgba(30,32,40,0.07);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.7; min-height: 100vh;
+  }
+  .hero {
+    background: linear-gradient(135deg, #1a0a0a 0%, #3d1111 50%, #7a1a1a 100%);
+    color: #f2f0ec;
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 700;
+    margin-bottom: .4rem; position: relative;
+  }
+  .hero p { font-size: .95rem; opacity: .75; position: relative; }
+  .hero .badge {
+    display:inline-block; background:var(--gold); color:#1e2028;
+    font-size:.75rem; font-weight:700;
+    padding:.25rem .75rem; border-radius:20px;
+    margin-bottom:1rem; position:relative; letter-spacing:.5px;
+  }
+  .lang-switch { position:absolute; top:1rem; right:1rem; z-index:20; }
+  .lang-btn {
+    background:rgba(255,255,255,.12);
+    border:1.5px solid rgba(255,255,255,.25);
+    color:#f2f0ec; font-family:'Source Sans 3',sans-serif;
+    font-size:.78rem; font-weight:600;
+    padding:.35rem .75rem; border-radius:8px;
+    cursor:pointer; transition:all .2s;
+    text-decoration:none; backdrop-filter:blur(4px);
+  }
+  .lang-btn:hover { background:rgba(255,255,255,.22); }
+  .container { max-width:720px; margin:0 auto; padding:1.5rem 1rem 3rem; }
+  .tabs {
+    display:flex; gap:.5rem; margin-bottom:1.5rem;
+    position:sticky; top:0; z-index:10;
+    background:var(--bg); padding:.75rem 0;
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+  }
+  .tab-btn {
+    flex-shrink:0; border:none; background:var(--card);
+    color:var(--text-muted); font-family:'Source Sans 3',sans-serif;
+    font-size:.85rem; font-weight:600;
+    padding:.55rem 1.1rem; border-radius:10px;
+    cursor:pointer; transition:all .2s;
+    border:1.5px solid var(--border);
+  }
+  .tab-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .tab-btn:hover:not(.active) { border-color:var(--accent-light); color:var(--accent); }
+  .tab-content { display:none; animation:fadeUp .35s ease; }
+  .tab-content.active { display:block; }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(12px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  .card {
+    background:var(--card); border-radius:14px;
+    padding:1.5rem; margin-bottom:1rem;
+    border:1.5px solid var(--border); box-shadow:var(--shadow);
+  }
+  .card h2 { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--accent); margin-bottom:.75rem; }
+  .card h3 { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--accent); margin-bottom:.5rem; margin-top:1rem; }
+  .card h3:first-child { margin-top:0; }
+  .card p { margin-bottom:.6rem; font-size:.95rem; }
+  .highlight {
+    background:var(--gold-light); border-left:3px solid var(--gold);
+    padding:.6rem .9rem; border-radius:0 8px 8px 0;
+    margin:.75rem 0; font-size:.9rem;
+  }
+  .highlight strong { color:var(--accent); }
+  .warn-box {
+    background:#fce4ec; border-left:3px solid var(--accent);
+    padding:.6rem .9rem; border-radius:0 8px 8px 0;
+    margin:.75rem 0; font-size:.9rem;
+  }
+  .period-tag {
+    display:inline-block; font-size:.7rem; font-weight:700;
+    padding:.15rem .55rem; border-radius:6px; letter-spacing:.5px;
+    margin-bottom:.5rem; color:#fff;
+  }
+  .tag-ch { background:#7a1a1a; }
+  .tag-zh { background:#4a148c; }
+  .timeline { position:relative; padding-left:2rem; }
+  .timeline::before {
+    content:''; position:absolute; left:6px; top:4px; bottom:4px;
+    width:2px; background:linear-gradient(to bottom, var(--gold), var(--accent)); border-radius:2px;
+  }
+  .tl-item { position:relative; margin-bottom:1.3rem; }
+  .tl-item::before {
+    content:''; position:absolute; left:-2rem; top:6px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--accent); border:2px solid var(--card);
+    box-shadow:0 0 0 2px var(--accent);
+  }
+  .tl-date { font-size:.78rem; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:.3px; }
+  .tl-text { font-size:.92rem; margin-top:.15rem; }
+  .fact-grid { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-top:.75rem; }
+  .fact-box {
+    background:var(--accent-bg); border-radius:10px; padding:.85rem; text-align:center;
+  }
+  .fact-box .num { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:700; color:var(--accent); }
+  .fact-box .label { font-size:.78rem; color:var(--text-muted); margin-top:.15rem; }
+  .quiz-q {
+    background:var(--card); border-radius:14px;
+    padding:1.3rem 1.5rem; margin-bottom:1rem;
+    border:1.5px solid var(--border); box-shadow:var(--shadow);
+  }
+  .quiz-q .q-num { font-size:.7rem; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:.35rem; }
+  .quiz-q .q-text { font-family:'Cormorant Garamond',serif; font-size:1.12rem; font-weight:600; margin-bottom:.85rem; line-height:1.5; }
+  .q-options { display:flex; flex-direction:column; gap:.45rem; }
+  .q-opt {
+    border:1.5px solid var(--border); border-radius:10px;
+    padding:.6rem 1rem; cursor:pointer; font-size:.9rem;
+    transition:all .2s; background:var(--bg);
+  }
+  .q-opt:hover:not(.disabled) { border-color:var(--accent-light); background:var(--accent-bg); }
+  .q-opt.correct { border-color:var(--success); background:var(--success-bg); color:var(--success); font-weight:600; }
+  .q-opt.wrong { border-color:var(--error); background:var(--error-bg); color:var(--error); }
+  .q-opt.disabled { cursor:default; opacity:.6; }
+  .q-opt.correct.disabled, .q-opt.wrong.disabled { opacity:1; }
+  .q-explain {
+    margin-top:.65rem; font-size:.85rem; color:var(--text-muted);
+    padding:.5rem .75rem; border-radius:8px; background:var(--bg);
+    display:none; line-height:1.6;
+  }
+  .q-explain.show { display:block; animation:fadeUp .3s ease; }
+  .score-bar {
+    background:var(--card); border-radius:14px;
+    padding:1.2rem 1.5rem; border:1.5px solid var(--border);
+    box-shadow:var(--shadow); text-align:center;
+    margin-bottom:1rem; display:none;
+  }
+  .score-bar.show { display:block; animation:fadeUp .4s ease; }
+  .score-bar .score-num { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:700; color:var(--accent); }
+  .score-bar .score-label { font-size:.85rem; color:var(--text-muted); }
+  .score-bar .score-msg { margin-top:.5rem; font-size:.95rem; font-weight:600; }
+  .reset-btn {
+    display:inline-block; background:var(--accent); color:#fff; border:none;
+    font-family:'Source Sans 3',sans-serif; font-size:.85rem; font-weight:600;
+    padding:.55rem 1.5rem; border-radius:10px; cursor:pointer;
+    margin-top:.75rem; transition:background .2s;
+  }
+  .reset-btn:hover { background:var(--accent-light); }
+  .fc-card { perspective:800px; height:200px; margin-bottom:1rem; cursor:pointer; }
+  .fc-inner { position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d; }
+  .fc-card.flipped .fc-inner { transform:rotateY(180deg); }
+  .fc-front, .fc-back {
+    position:absolute; inset:0; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    padding:1.5rem; text-align:center;
+    backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    border:1.5px solid var(--border); box-shadow:var(--shadow);
+  }
+  .fc-front {
+    background:var(--card); font-family:'Cormorant Garamond',serif;
+    font-size:1.08rem; font-weight:600; color:var(--accent);
+  }
+  .fc-back {
+    background:linear-gradient(135deg, var(--accent) 0%, #1a0a0a 100%);
+    color:#f2f0ec; transform:rotateY(180deg);
+    font-size:.93rem; line-height:1.6;
+  }
+  .fc-hint { font-size:.75rem; color:var(--text-muted); position:absolute; bottom:.75rem; }
+  .progress-wrap {
+    display:flex; align-items:center; gap:.75rem;
+    margin-bottom:1.25rem; font-size:.8rem; color:var(--text-muted);
+  }
+  .progress-track { flex:1; height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
+  .progress-fill { height:100%; background:linear-gradient(90deg, var(--gold), var(--accent)); border-radius:3px; transition:width .4s ease; }
+  .love-note {
+    text-align:center; padding:1rem; margin-top:1rem;
+    font-size:.82rem; color:var(--text-muted);
+    font-style:italic; opacity:.7;
+  }
+  .love-note span { color:#c0392b; }
+  @media (max-width:520px) {
+    .hero h1 { font-size:1.5rem; }
+    .card { padding:1.2rem; }
+    .fact-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="lang-switch">
+    <a href="totalitarian_study_guide.html" class="lang-btn">&#127479;&#127482; Русский</a>
+  </div>
+  <div class="badge">&#128218; Подготовка за урок</div>
+  <h1>Тоталитарното управление в България</h1>
+  <p>Режимът на Червенков (1950&ndash;1956) и управлението на Живков (1956&ndash;1989)</p>
+</div>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('summary')">&#128221; Конспект</button>
+    <button class="tab-btn" onclick="switchTab('timeline')">&#9203; Хронология</button>
+    <button class="tab-btn" onclick="switchTab('cards')">&#127183; Карти</button>
+    <button class="tab-btn" onclick="switchTab('quiz')">&#9989; Тест</button>
+  </div>
+
+  <!-- КОНСПЕКТ -->
+  <div id="tab-summary" class="tab-content active">
+
+    <div class="card">
+      <h2>Обща картина</h2>
+      <p>След подписването на Парижкия мирен договор многопартийната система в България е <strong>ликвидирана</strong>. БКП поема ръководна роля във всички сфери &mdash; политическа, обществена и икономическа. Налага се <strong>тоталитарна система</strong> на управление.</p>
+      <div class="highlight">
+        Съществува само още една партия &mdash; <strong>БЗНС</strong>, но тя признава ръководната роля на Комунистическата партия и служи като параван за реално еднопартийна власт.
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="period-tag tag-ch">1950&ndash;1956</span>
+      <h2>Режимът на Вълко Червенков</h2>
+
+      <h3>Идване на власт</h3>
+      <p>През юли <strong>1949 г.</strong> умира Георги Димитров &mdash; лидерът на БКП и министър-председател. Поста му накратко поема <strong>Васил Коларов</strong>, който също умира няколко месеца по-късно.</p>
+      <p>В началото на <strong>1950 г.</strong> министър-председател става <strong>Вълко Червенков</strong>. Той е наричан <strong>&laquo;българският Сталин&raquo;</strong> заради стремежа си да подражава на идола си в Москва.</p>
+
+      <h3>Култ към личността</h3>
+      <p>Една и съща личност концентрира цялата власт &mdash; стои начело и на партията, и на държавата. Създава се <strong>култ към личността на вожда</strong>.</p>
+
+      <h3>Чистки и репресии</h3>
+      <p>Червенков започва <strong>масово прочистване</strong> на държавния и партийния апарат от &laquo;врагове&raquo;. Много хора са уволнени, отстранени от работа или репресирани. Някои са изпратени в <strong>лагери за политически опасни лица</strong>.</p>
+
+      <div class="warn-box">
+        <strong>Делото Трайчо Костов (1949):</strong> Вицепремиерът Трайчо Костов е обвинен в предателство, антисъветизъм и шпионаж и <strong>осъден на смърт</strong>. Атаката срещу толкова високопоставен член всява всеобщ страх.
+      </div>
+
+      <h3>Репресивният апарат</h3>
+      <p>&bull; Лагери: <strong>Белене</strong> и по-късно <strong>Ловеч</strong> &mdash; символи на нечовешко отношение.</p>
+      <p>&bull; Съдебна система и милиция &mdash; изградени по <strong>съветски модел</strong>, подчинени на партийната воля.</p>
+      <p>&bull; <strong>Държавна сигурност</strong> &mdash; основната репресивна структура, на която се крепи тоталитарният режим.</p>
+
+      <h3>Краят на Червенков</h3>
+      <p>След <strong>смъртта на Сталин (1953 г.)</strong> тежките репресии намаляват. На <strong>Априлския пленум на ЦК на БКП (1956 г.)</strong> култът към личността на Червенков е развенчан, политиката му е осъдена и той самият е отстранен от партийното и държавното ръководство.</p>
+    </div>
+
+    <div class="card">
+      <span class="period-tag tag-zh">1956&ndash;1989</span>
+      <h2>Управлението на Тодор Живков</h2>
+
+      <h3>Идване на власт</h3>
+      <p>Тодор Живков застава начело на партийното ръководство. Той е част от ръководството, което слага край на тежките репресии.</p>
+
+      <div class="fact-grid">
+        <div class="fact-box">
+          <div class="num">33 години</div>
+          <div class="label">на власт</div>
+        </div>
+        <div class="fact-box">
+          <div class="num">1962&ndash;1989</div>
+          <div class="label">период на управление</div>
+        </div>
+      </div>
+
+      <h3>Постове</h3>
+      <p>&bull; <strong>1962&ndash;1971:</strong> Първи секретар на БКП и министър-председател.</p>
+      <p>&bull; <strong>1971&ndash;1989:</strong> Председател на Държавния съвет.</p>
+
+      <h3>Стил на управление</h3>
+      <p>Без висше образование, Живков е един от <strong>най-дълго управлявалите</strong> комунистически лидери. Стилът му е <strong>по-умерен</strong> в сравнение с Червенков.</p>
+
+      <div class="highlight">
+        <strong>1962 г.:</strong> Закрити са принудителните трудови лагери. Хиляди хора са отнесени или съсипани, но лагерите са затворени.
+      </div>
+
+      <h3>Справяне с опозицията</h3>
+      <p>Живков премахва противниците си <strong>внимателно</strong> &mdash; не ги убива, а ги изпраща на дипломатически постове далеч от властта. Обичайна практика е съперниците да бъдат изпращани на &laquo;добри служби&raquo; в чужбина.</p>
+
+      <h3>Социална политика</h3>
+      <p>Тоталитарната държава концентрира ресурсите в свои ръце и ги разпределя &mdash; изградена е система за здравеопазване и образование.</p>
+    </div>
+  </div>
+
+  <!-- ТАЙМЛАЙН -->
+  <div id="tab-timeline" class="tab-content">
+    <div class="card">
+      <h2>Хронология</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">1948&ndash;1949</div>
+          <div class="tl-text">Ликвидирана е многопартийната система. БКП поема пълен контрол. Делото Трайчо Костов &mdash; осъден на смърт.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Юли 1949</div>
+          <div class="tl-text">Умира Георги Димитров. Поста му поема Васил Коларов, който също умира скоро след това.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Нач. 1950</div>
+          <div class="tl-text">Вълко Червенков става министър-председател. Начало на режима на &laquo;българския Сталин&raquo;.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1950&ndash;1953</div>
+          <div class="tl-text">Масови репресии: чистки, лагери в Белене и Ловеч, култ към личността, Държавна сигурност.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1953</div>
+          <div class="tl-text">Смъртта на Сталин. Началото на края на най-тежките репресии.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Април 1956</div>
+          <div class="tl-text">Априлски пленум на ЦК на БКП: култът към Червенков е развенчан, той е отстранен от ръководството.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1956</div>
+          <div class="tl-text">Тодор Живков застава начело. По-умерен стил на управление.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1962</div>
+          <div class="tl-text">Закрити са принудителните трудови лагери.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1962&ndash;1971</div>
+          <div class="tl-text">Живков е Първи секретар на БКП и министър-председател.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1971&ndash;1989</div>
+          <div class="tl-text">Живков е Председател на Държавния съвет. Управлява общо 33 години.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- КАРТИ -->
+  <div id="tab-cards" class="tab-content">
+    <p style="text-align:center;color:var(--text-muted);margin-bottom:1rem;font-size:.88rem">Натисни картата, за да видиш отговора &#128070;</p>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Кой е &laquo;българският Сталин&raquo;?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Вълко Червенков &mdash; министър-председател от 1950 г., подражава на Сталин</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Какво се случва с Трайчо Костов?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Вицепремиер, обвинен в предателство, антисъветизъм и шпионаж. Осъден на смърт (1949).</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Кои са двата най-известни лагера?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Белене и Ловеч &mdash; лагери за политически опасни лица</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Коя е основната репресивна структура на режима?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Държавна сигурност (ДС)</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Какво се случва на Априлския пленум (1956)?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Култът към Червенков е развенчан, политиката му е осъдена, той е отстранен от ръководството</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Кое събитие слага край на най-тежките репресии?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Смъртта на Сталин (1953 г.)</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Колко години управлява Тодор Живков?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">33 години (1956&ndash;1989)</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Какви постове заема Живков?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">1962&ndash;1971: Първи секретар и министър-председател<br>1971&ndash;1989: Председател на Държавния съвет</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Как Живков се справя с противниците си?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Изпраща ги на дипломатически постове далеч от властта (не ги убива)</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Кога са закрити принудителните трудови лагери?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">1962 г. &mdash; по времето на Тодор Живков</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ТЕСТ -->
+  <div id="tab-quiz" class="tab-content">
+    <div class="score-bar" id="scoreBar">
+      <div class="score-label">Твоят резултат</div>
+      <div class="score-num" id="scoreNum">0/10</div>
+      <div class="score-msg" id="scoreMsg"></div>
+      <button class="reset-btn" onclick="resetQuiz()">Опитай отново</button>
+    </div>
+    <div class="progress-wrap">
+      <span id="progText">0 от 10</span>
+      <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+    </div>
+    <div id="quizContainer"></div>
+  </div>
+
+  <div class="love-note">
+    &#128140; Ал те обича много, Алиса! Учи добре! &#128140;
+  </div>
+</div>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById('tab-' + name).classList.add('active');
+  var idx = ['summary','timeline','cards','quiz'].indexOf(name);
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+}
+
+var questions = [
+  {
+    q: "Кой е наричан \xABбългарският Сталин\xBB?",
+    opts: ["Георги Димитров", "Тодор Живков", "Вълко Червенков", "Трайчо Костов"],
+    ans: 2,
+    explain: "Вълко Червенков е наричан \xABбългарският Сталин\xBB заради стремежа си да подражава на Сталин."
+  },
+  {
+    q: "Какво се случва с Трайчо Костов?",
+    opts: ["Изпратен в Москва", "Осъден на смърт за предателство и шпионаж", "Става министър-председател", "Емигрира в чужбина"],
+    ans: 1,
+    explain: "Трайчо Костов е обвинен в предателство, антисъветизъм и шпионаж и е осъден на смърт (1949)."
+  },
+  {
+    q: "Кои са символите на репресиите \u2014 двата известни лагера?",
+    opts: ["Пловдив и Варна", "София и Бургас", "Белене и Ловеч", "Русе и Плевен"],
+    ans: 2,
+    explain: "Лагерите в Белене и Ловеч са символи на нечовешкото отношение към политическите затворници."
+  },
+  {
+    q: "Коя структура е основата на репресивния апарат?",
+    opts: ["Народният съд", "Държавна сигурност", "Министерство на отбраната", "БЗНС"],
+    ans: 1,
+    explain: "Държавна сигурност (ДС) е основната репресивна структура на тоталитарния режим."
+  },
+  {
+    q: "Кое събитие от 1953 г. слага край на най-тежките репресии?",
+    opts: ["Априлският пленум", "Смъртта на Сталин", "Делото Костов", "Идването на Живков"],
+    ans: 1,
+    explain: "След смъртта на Сталин (1953) тежките репресии в България намаляват."
+  },
+  {
+    q: "Какво се случва на Априлския пленум на ЦК на БКП (1956)?",
+    opts: ["Живков е отстранен", "Червенков е избран за президент", "Култът към Червенков е развенчан и той е отстранен", "Обявена е република"],
+    ans: 2,
+    explain: "Култът към Червенков е развенчан, политиката му е осъдена и той е отстранен от ръководството."
+  },
+  {
+    q: "Колко години управлява Тодор Живков?",
+    opts: ["15 години", "22 години", "33 години", "40 години"],
+    ans: 2,
+    explain: "Тодор Живков управлява 33 години (1956\u20141989)."
+  },
+  {
+    q: "Какъв пост заема Живков от 1971 до 1989 г.?",
+    opts: ["Министър-председател", "Първи секретар", "Председател на Държавния съвет", "Президент"],
+    ans: 2,
+    explain: "От 1971 до 1989 г. Живков е Председател на Държавния съвет."
+  },
+  {
+    q: "Как Живков се справя с политическите си противници?",
+    opts: ["Осъжда ги на смърт", "Изпраща ги на дипломатически постове далеч от властта", "Изпраща ги в лагери", "Не прави нищо"],
+    ans: 1,
+    explain: "Живков премахва противниците си внимателно \u2014 изпраща ги на дипломатически постове в чужбина."
+  },
+  {
+    q: "Кога са закрити принудителните трудови лагери?",
+    opts: ["1953 г.", "1956 г.", "1962 г.", "1971 г."],
+    ans: 2,
+    explain: "Принудителните трудови лагери са закрити през 1962 г. по времето на Живков."
+  }
+];
+
+var answered = 0, correct = 0;
+function buildQuiz() {
+  var c = document.getElementById('quizContainer');
+  c.innerHTML = ''; answered = 0; correct = 0;
+  updateProgress();
+  document.getElementById('scoreBar').classList.remove('show');
+  for (var i = 0; i < questions.length; i++) {
+    var q = questions[i];
+    var div = document.createElement('div');
+    div.className = 'quiz-q';
+    var optsHtml = '';
+    for (var j = 0; j < q.opts.length; j++) {
+      optsHtml += '<div class="q-opt" onclick="answer(' + i + ',' + j + ')">' + q.opts[j] + '</div>';
+    }
+    div.innerHTML =
+      '<div class="q-num">\u0412\u044A\u043F\u0440\u043E\u0441 ' + (i + 1) + '</div>' +
+      '<div class="q-text">' + q.q + '</div>' +
+      '<div class="q-options" id="opts-' + i + '">' + optsHtml + '</div>' +
+      '<div class="q-explain" id="expl-' + i + '">' + q.explain + '</div>';
+    c.appendChild(div);
+  }
+}
+function answer(qi, oi) {
+  var opts = document.querySelectorAll('#opts-' + qi + ' .q-opt');
+  if (opts[0].classList.contains('disabled')) return;
+  answered++;
+  if (oi === questions[qi].ans) correct++;
+  for (var j = 0; j < opts.length; j++) {
+    opts[j].classList.add('disabled');
+    if (j === questions[qi].ans) opts[j].classList.add('correct');
+    else if (j === oi) opts[j].classList.add('wrong');
+  }
+  document.getElementById('expl-' + qi).classList.add('show');
+  updateProgress();
+  if (answered === questions.length) showScore();
+}
+function updateProgress() {
+  document.getElementById('progText').textContent = answered + ' от ' + questions.length;
+  document.getElementById('progFill').style.width = (answered / questions.length * 100) + '%';
+}
+function showScore() {
+  var bar = document.getElementById('scoreBar');
+  bar.classList.add('show');
+  document.getElementById('scoreNum').textContent = correct + '/' + questions.length;
+  var pct = correct / questions.length;
+  var msg;
+  if (pct === 1) msg = '\u{1F31F} Отлично! Знаеш всичко!';
+  else if (pct >= 0.7) msg = '\u{1F44D} Добър резултат! Повтори грешките.';
+  else if (pct >= 0.5) msg = '\u{1F4D6} Не е зле, прочети конспекта отново.';
+  else msg = '\u{1F4DA} Прочети конспекта още веднъж и опитай пак!';
+  document.getElementById('scoreMsg').textContent = msg;
+  bar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function resetQuiz() {
+  buildQuiz();
+  window.scrollTo({ top: document.getElementById('tab-quiz').offsetTop - 80, behavior: 'smooth' });
+}
+buildQuiz();
+</script>
+</body>
+</html>
