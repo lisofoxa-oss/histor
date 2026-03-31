@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>История — Тоталитарното управление 1956–1989</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f2f0ec;
+    --card: #ffffff;
+    --accent: #4a148c;
+    --accent-light: #7b1fa2;
+    --accent-bg: #f3e5f5;
+    --text: #1e2028;
+    --text-muted: #6b6a72;
+    --border: #ddd8d0;
+    --gold: #9e7c2e;
+    --gold-light: #fdf6e3;
+    --success: #2e7d32;
+    --success-bg: #e8f5e9;
+    --error: #c62828;
+    --error-bg: #ffebee;
+    --shadow: 0 2px 16px rgba(30,32,40,0.07);
+    --red: #7a1a1a;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.7; min-height: 100vh;
+  }
+  .hero {
+    background: linear-gradient(135deg, #1a0a2e 0%, #311b56 50%, #4a148c 100%);
+    color: #f2f0ec;
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 700;
+    margin-bottom: .4rem; position: relative;
+  }
+  .hero p { font-size: .95rem; opacity: .75; position: relative; }
+  .hero .badge {
+    display:inline-block; background:var(--gold); color:#1e2028;
+    font-size:.75rem; font-weight:700;
+    padding:.25rem .75rem; border-radius:20px;
+    margin-bottom:1rem; position:relative; letter-spacing:.5px;
+  }
+  .container { max-width:720px; margin:0 auto; padding:1.5rem 1rem 3rem; }
+  .tabs {
+    display:flex; gap:.5rem; margin-bottom:1.5rem;
+    position:sticky; top:0; z-index:10;
+    background:var(--bg); padding:.75rem 0;
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+  }
+  .tab-btn {
+    flex-shrink:0; border:none; background:var(--card);
+    color:var(--text-muted); font-family:'Source Sans 3',sans-serif;
+    font-size:.85rem; font-weight:600;
+    padding:.55rem 1.1rem; border-radius:10px;
+    cursor:pointer; transition:all .2s;
+    border:1.5px solid var(--border);
+  }
+  .tab-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .tab-btn:hover:not(.active) { border-color:var(--accent-light); color:var(--accent); }
+  .tab-content { display:none; animation:fadeUp .35s ease; }
+  .tab-content.active { display:block; }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(12px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  .card {
+    background:var(--card); border-radius:14px;
+    padding:1.5rem; margin-bottom:1rem;
+    border:1.5px solid var(--border); box-shadow:var(--shadow);
+  }
+  .card h2 { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--accent); margin-bottom:.75rem; }
+  .card h3 { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--accent); margin-bottom:.5rem; margin-top:1rem; }
+  .card h3:first-child { margin-top:0; }
+  .card p { margin-bottom:.6rem; font-size:.95rem; }
+  .highlight {
+    background:var(--gold-light); border-left:3px solid var(--gold);
+    padding:.6rem .9rem; border-radius:0 8px 8px 0;
+    margin:.75rem 0; font-size:.9rem;
+  }
+  .highlight strong { color:var(--accent); }
+  .warn-box {
+    background:#ede7f6; border-left:3px solid var(--accent);
+    padding:.6rem .9rem; border-radius:0 8px 8px 0;
+    margin:.75rem 0; font-size:.9rem;
+  }
+  .red-box {
+    background:#fce4ec; border-left:3px solid var(--red);
+    padding:.6rem .9rem; border-radius:0 8px 8px 0;
+    margin:.75rem 0; font-size:.9rem;
+  }
+  .topic-tag {
+    display:inline-block; font-size:.7rem; font-weight:700;
+    padding:.15rem .55rem; border-radius:6px; letter-spacing:.5px;
+    margin-bottom:.5rem; color:#fff;
+  }
+  .tag-pol { background:#4a148c; }
+  .tag-eco { background:#1565c0; }
+  .tag-soc { background:#2e7d32; }
+  .tag-ideo { background:#bf360c; }
+  .tag-opp { background:#c62828; }
+  .timeline { position:relative; padding-left:2rem; }
+  .timeline::before {
+    content:''; position:absolute; left:6px; top:4px; bottom:4px;
+    width:2px; background:linear-gradient(to bottom, var(--gold), var(--accent)); border-radius:2px;
+  }
+  .tl-item { position:relative; margin-bottom:1.3rem; }
+  .tl-item::before {
+    content:''; position:absolute; left:-2rem; top:6px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--accent); border:2px solid var(--card);
+    box-shadow:0 0 0 2px var(--accent);
+  }
+  .tl-date { font-size:.78rem; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:.3px; }
+  .tl-text { font-size:.92rem; margin-top:.15rem; }
+  .fact-grid { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-top:.75rem; }
+  .fact-box {
+    background:var(--accent-bg); border-radius:10px; padding:.85rem; text-align:center;
+  }
+  .fact-box .num { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:700; color:var(--accent); }
+  .fact-box .label { font-size:.78rem; color:var(--text-muted); margin-top:.15rem; }
+  .quiz-q {
+    background:var(--card); border-radius:14px;
+    padding:1.3rem 1.5rem; margin-bottom:1rem;
+    border:1.5px solid var(--border); box-shadow:var(--shadow);
+  }
+  .quiz-q .q-num { font-size:.7rem; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:.35rem; }
+  .quiz-q .q-text { font-family:'Cormorant Garamond',serif; font-size:1.12rem; font-weight:600; margin-bottom:.85rem; line-height:1.5; }
+  .q-options { display:flex; flex-direction:column; gap:.45rem; }
+  .q-opt {
+    border:1.5px solid var(--border); border-radius:10px;
+    padding:.6rem 1rem; cursor:pointer; font-size:.9rem;
+    transition:all .2s; background:var(--bg);
+  }
+  .q-opt:hover:not(.disabled) { border-color:var(--accent-light); background:var(--accent-bg); }
+  .q-opt.correct { border-color:var(--success); background:var(--success-bg); color:var(--success); font-weight:600; }
+  .q-opt.wrong { border-color:var(--error); background:var(--error-bg); color:var(--error); }
+  .q-opt.disabled { cursor:default; opacity:.6; }
+  .q-opt.correct.disabled, .q-opt.wrong.disabled { opacity:1; }
+  .q-explain {
+    margin-top:.65rem; font-size:.85rem; color:var(--text-muted);
+    padding:.5rem .75rem; border-radius:8px; background:var(--bg);
+    display:none; line-height:1.6;
+  }
+  .q-explain.show { display:block; animation:fadeUp .3s ease; }
+  .score-bar {
+    background:var(--card); border-radius:14px;
+    padding:1.2rem 1.5rem; border:1.5px solid var(--border);
+    box-shadow:var(--shadow); text-align:center;
+    margin-bottom:1rem; display:none;
+  }
+  .score-bar.show { display:block; animation:fadeUp .4s ease; }
+  .score-bar .score-num { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:700; color:var(--accent); }
+  .score-bar .score-label { font-size:.85rem; color:var(--text-muted); }
+  .score-bar .score-msg { margin-top:.5rem; font-size:.95rem; font-weight:600; }
+  .reset-btn {
+    display:inline-block; background:var(--accent); color:#fff; border:none;
+    font-family:'Source Sans 3',sans-serif; font-size:.85rem; font-weight:600;
+    padding:.55rem 1.5rem; border-radius:10px; cursor:pointer;
+    margin-top:.75rem; transition:background .2s;
+  }
+  .reset-btn:hover { background:var(--accent-light); }
+  .fc-card { perspective:800px; height:200px; margin-bottom:1rem; cursor:pointer; }
+  .fc-inner { position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d; }
+  .fc-card.flipped .fc-inner { transform:rotateY(180deg); }
+  .fc-front, .fc-back {
+    position:absolute; inset:0; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    padding:1.5rem; text-align:center;
+    backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    border:1.5px solid var(--border); box-shadow:var(--shadow);
+  }
+  .fc-front {
+    background:var(--card); font-family:'Cormorant Garamond',serif;
+    font-size:1.06rem; font-weight:600; color:var(--accent);
+  }
+  .fc-back {
+    background:linear-gradient(135deg, var(--accent) 0%, #1a0a2e 100%);
+    color:#f2f0ec; transform:rotateY(180deg);
+    font-size:.91rem; line-height:1.6;
+  }
+  .fc-hint { font-size:.75rem; color:var(--text-muted); position:absolute; bottom:.75rem; }
+  .progress-wrap {
+    display:flex; align-items:center; gap:.75rem;
+    margin-bottom:1.25rem; font-size:.8rem; color:var(--text-muted);
+  }
+  .progress-track { flex:1; height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
+  .progress-fill { height:100%; background:linear-gradient(90deg, var(--gold), var(--accent)); border-radius:3px; transition:width .4s ease; }
+
+  /* === SURPRISE === */
+  .surprise-banner {
+    background: linear-gradient(135deg, #e91e63, #ff5252, #e91e63);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(233,30,99,.25);
+    position: relative;
+    overflow: hidden;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  @keyframes glow {
+    from { box-shadow: 0 4px 24px rgba(233,30,99,.25); }
+    to { box-shadow: 0 4px 32px rgba(233,30,99,.45); }
+  }
+  .surprise-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='1.5' fill='%23ffffff' fill-opacity='.08'/%3E%3C/svg%3E");
+  }
+  .surprise-emoji {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: .5rem;
+    position: relative;
+    animation: bounce 1s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .surprise-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: .4rem;
+    position: relative;
+  }
+  .surprise-text {
+    font-size: 1rem;
+    position: relative;
+    line-height: 1.6;
+    opacity: .95;
+  }
+  .hearts {
+    position: absolute;
+    font-size: 1.2rem;
+    animation: float 3s ease-in-out infinite;
+    opacity: .6;
+  }
+  .hearts:nth-child(1) { top: 10%; left: 8%; animation-delay: 0s; }
+  .hearts:nth-child(2) { top: 15%; right: 10%; animation-delay: .5s; }
+  .hearts:nth-child(3) { bottom: 12%; left: 15%; animation-delay: 1s; }
+  .hearts:nth-child(4) { bottom: 10%; right: 8%; animation-delay: 1.5s; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(10deg); }
+  }
+
+  @media (max-width:520px) {
+    .hero h1 { font-size:1.5rem; }
+    .card { padding:1.2rem; }
+    .fact-grid { grid-template-columns:1fr; }
+    .surprise-title { font-size:1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">&#128218; Подготовка за урок</div>
+  <h1>Тоталитарното управление на Живков</h1>
+  <p>България 1956&ndash;1989 &middot; политика, икономика, идеология, опозиция</p>
+</div>
+
+<div class="container">
+
+  <!-- SURPRISE -->
+  <div class="surprise-banner">
+    <span class="hearts">&#10084;&#65039;</span>
+    <span class="hearts">&#10084;&#65039;</span>
+    <span class="hearts">&#10084;&#65039;</span>
+    <span class="hearts">&#10084;&#65039;</span>
+    <span class="surprise-emoji">&#127873;</span>
+    <div class="surprise-title">&#10024; Изненада за Алиса! &#10024;</div>
+    <div class="surprise-text">Ал те обича много-много!<br>Учи добре и ще се видите скоро &#128156;</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('summary')">&#128221; Конспект</button>
+    <button class="tab-btn" onclick="switchTab('timeline')">&#9203; Хронология</button>
+    <button class="tab-btn" onclick="switchTab('cards')">&#127183; Карти</button>
+    <button class="tab-btn" onclick="switchTab('quiz')">&#9989; Тест</button>
+  </div>
+
+  <!-- КОНСПЕКТ -->
+  <div id="tab-summary" class="tab-content active">
+
+    <div class="card">
+      <span class="topic-tag tag-pol">ПОЛИТИКА</span>
+      <h2>1. Политическа система</h2>
+
+      <h3>Сливане на властите</h3>
+      <p>Тоталитарният характер на държавата проличава в <strong>сливането на партията, държавата и съдебната власт</strong>. Народното събрание е обезличено &mdash; властта е изпълнителна и съдебна, напълно подчинена на партията.</p>
+
+      <div class="highlight">
+        <strong>Конституция 1971 г.:</strong> С нея Живков става <strong>председател на Държавния съвет</strong> &mdash; нов изпълнителен орган. Конституцията обезличава ролята на Народното събрание.
+      </div>
+
+      <h3>Номенклатура</h3>
+      <p>Около <strong>10%</strong> от населението е членове на партията. Висшите постове се заемат от верни на партията хора &mdash; т.нар. <strong>номенклатура</strong>. Те получават привилегии и комфорт, а членовете на партията нарастват, защото членството е пътят към кариера.</p>
+
+      <h3>Справяне с противниците</h3>
+      <p>Живков предпочита да отстранява противниците си <strong>внимателно</strong>, без да си създава врагове. Обичайна практика е съперниците да бъдат изпращани на добри служби в страната и чужбина, <strong>далеч от властта</strong>.</p>
+    </div>
+
+    <div class="card">
+      <span class="topic-tag tag-opp">ОПОЗИЦИЯ</span>
+      <h2>2. Опити за преврат</h2>
+
+      <div class="red-box">
+        <strong>1965 г.:</strong> Група от БКП начело с <strong>Иван Тодоров &ndash; Горуня</strong> обявява група в партията и в армията, която принципно не е съгласна с методите на Тодор Живков. Те формират група от верни на тях военни. Опитът за преврат е <strong>разкрит</strong>, а участниците са осъдени на дълги години затвор. Горуня е разстрелян.
+      </div>
+
+      <p>Други подобни опити също са регистрирани, но никога не успяват да свалят Живков.</p>
+
+      <div class="highlight">
+        <strong>1963 г.:</strong> Живков подкрепен от ЦК на БКП предлага България да стане <strong>16-а република</strong> в негова полза, за да преобърне България в съюзна република на СССР. Този опит не успява поради несъгласието на съветското ръководство.
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="topic-tag tag-eco">ИКОНОМИКА</span>
+      <h2>3. Икономика и зависимост от СССР</h2>
+
+      <h3>Верността към Съветския съюз</h3>
+      <p>Живков търгува <strong>изключително</strong> със съветските лидери. България получава <strong>евтин съветски петрол</strong>, който реекспортира на Запад за твърда валута.</p>
+
+      <div class="warn-box">
+        <strong>Проблем:</strong> Българската земеделска и промишлена продукция е <strong>нискокачествена</strong> и се пласира без пазар. Съветската помощ за индустриализацията е предимно <strong>остарели технологии</strong>, които обричат страната на изостаналост.
+      </div>
+
+      <h3>Примери</h3>
+      <p>&bull; Металургичният комбинат <strong>&laquo;Кремиковци&raquo;</strong> &mdash; изграден със съветски технологии от времето на Първата световна война.</p>
+      <p>&bull; Кораб <strong>&laquo;Орел&raquo;</strong> &mdash; доставял суровини от СССР за българската промишленост.</p>
+
+      <div class="fact-grid">
+        <div class="fact-box">
+          <div class="num">~10%</div>
+          <div class="label">членове на партията</div>
+        </div>
+        <div class="fact-box">
+          <div class="num">33 г.</div>
+          <div class="label">на власт</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="topic-tag tag-soc">СОЦИАЛНА СФЕРА</span>
+      <h2>4. Социална политика</h2>
+      <p>Държавата концентрира <strong>всички средства</strong> в свои ръце и ги разпределя, което създава привидно усещане за <strong>благополучие</strong>.</p>
+
+      <h3>Какво получават хората:</h3>
+      <p>&bull; Право на <strong>почивки, пенсии и социални осигуровки</strong>.</p>
+      <p>&bull; Система за всеобщо <strong>здравеопазване и образование</strong>.</p>
+
+      <h3>Но на каква цена:</h3>
+      <p>&bull; Магазините и лишпите на стоки &mdash; <strong>дефицит</strong>. Пред магазините често се извиват дълги опашки за друга дефицитна стока.</p>
+      <p>&bull; Потреблението е <strong>за сметка на другите</strong> &mdash; стоките приобщават на секторите на лукса, внасяните магазини и лишните стоки.</p>
+    </div>
+
+    <div class="card">
+      <span class="topic-tag tag-ideo">ИДЕОЛОГИЯ</span>
+      <h2>5. Идеология &mdash; марксизъм-ленинизъм</h2>
+      <p>Официалната идеология е наречена <strong>марксизъм-ленинизъм</strong>. Тя се изучава във всички училища и университети в страната.</p>
+
+      <div class="warn-box">
+        <strong>Ключов принцип:</strong> Интересите на <strong>колектива</strong> са над интересите на <strong>личността</strong>. Идеологията изисква поставянето на институциите над човека.
+      </div>
+
+      <p>Официалната идеология ограничава свободата на <strong>лично мнение</strong>. Всичко трябва да става в рамките на позволеното от властта.</p>
+    </div>
+
+    <div class="card">
+      <h2>6. Краят на Живков</h2>
+      <p>Едва при идването на власт в Съветския съюз на <strong>Михаил Горбачов</strong> по съветски модел тоталитарно се появяват първите пукнатини между него и Живков.</p>
+
+      <div class="highlight">
+        <strong>80-те години:</strong> Съветският съюз се афишира с България. Живков предлага на Горбачов да преобърне България, но поради несъгласие на съветското ръководство опитът не успява. В крайна сметка Живков е свален чак <strong>10 ноември 1989 г.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ТАЙМЛАЙН -->
+  <div id="tab-timeline" class="tab-content">
+    <div class="card">
+      <h2>Хронология 1956&ndash;1989</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">Април 1956</div>
+          <div class="tl-text">Априлски пленум. Живков застава начело на БКП. Край на режима на Червенков.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1962</div>
+          <div class="tl-text">Живков става Първи секретар и министър-председател. Закрити са принудителните трудови лагери.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1963</div>
+          <div class="tl-text">Живков предлага България да стане 16-а република на СССР. Опитът не успява.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1965</div>
+          <div class="tl-text">Опит за военен преврат на Иван Тодоров &ndash; Горуня. Разкрит, участниците осъдени, Горуня разстрелян.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">1971</div>
+          <div class="tl-text">Нова конституция. Създаден е Държавен съвет. Живков е негов председател (до 1989).</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">70&ndash;80-те</div>
+          <div class="tl-text">България реекспортира евтин съветски петрол. Номенклатурата се разраства. Дефицит на стоки.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">80-те години</div>
+          <div class="tl-text">Смяна на имената на българските турци. Някои лагери отново отворени. Горбачов идва на власт в СССР.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">10 ноември 1989</div>
+          <div class="tl-text">Тодор Живков е свален от власт. Край на 33-годишното управление.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- КАРТИ -->
+  <div id="tab-cards" class="tab-content">
+    <p style="text-align:center;color:var(--text-muted);margin-bottom:1rem;font-size:.88rem">Натисни картата, за да видиш отговора &#128070;</p>
+
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Какво представлява номенклатурата?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Висшите постове, заемани от верни на партията хора. Около 10% от населението е в партията.</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Каква конституция е приета през 1971 г.?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Създава Държавен съвет, чийто председател е Живков. Обезличава Народното събрание.</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Кой се опитва да свали Живков през 1965 г.?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Иван Тодоров &ndash; Горуня. Опитът е разкрит, Горуня е разстрелян.</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Какво предлага Живков през 1963 г.?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">България да стане 16-а република на СССР. Опитът не успява.</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Откъде идва евтиният петрол и какво прави България с него?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">От СССР. България го реекспортира на Запад за твърда валута.</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Какъв е комбинатът &laquo;Кремиковци&raquo;?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Металургичен комбинат, изграден със съветски (остарели) технологии. Символ на зависимостта от СССР.</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Каква е официалната идеология?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Марксизъм-ленинизъм. Колективът над личността. Изучава се навсякъде.</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Как се справя Живков с противниците?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Изпраща ги на дипломатически постове далеч от властта &mdash; не ги убива.</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Какво получават хората от социалната система?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">Почивки, пенсии, осигуровки, здравеопазване, образование. Но &mdash; дефицит на стоки и опашки.</div>
+      </div>
+    </div>
+    <div class="fc-card" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">Кога е свален Тодор Живков?<span class="fc-hint">натисни за отговор</span></div>
+        <div class="fc-back">10 ноември 1989 г.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ТЕСТ -->
+  <div id="tab-quiz" class="tab-content">
+    <div class="score-bar" id="scoreBar">
+      <div class="score-label">Твоят резултат</div>
+      <div class="score-num" id="scoreNum">0/10</div>
+      <div class="score-msg" id="scoreMsg"></div>
+      <button class="reset-btn" onclick="resetQuiz()">Опитай отново</button>
+    </div>
+    <div class="progress-wrap">
+      <span id="progText">0 от 10</span>
+      <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+    </div>
+    <div id="quizContainer"></div>
+  </div>
+</div>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById('tab-' + name).classList.add('active');
+  var idx = ['summary','timeline','cards','quiz'].indexOf(name);
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+}
+
+var questions = [
+  {
+    q: "Какво се случва с Конституцията от 1971 г.?",
+    opts: ["Създава президентски пост", "Създава Държавен съвет, чийто председател е Живков", "Обявява демокрация", "Забранява БКП"],
+    ans: 1,
+    explain: "Конституцията от 1971 г. създава Държавен съвет с председател Тодор Живков."
+  },
+  {
+    q: "Какъв процент от населението е член на партията?",
+    opts: ["Около 2%", "Около 5%", "Около 10%", "Около 25%"],
+    ans: 2,
+    explain: "Около 10% от населението са членове на Комунистическата партия."
+  },
+  {
+    q: "Кой се опитва да свали Живков през 1965 г.?",
+    opts: ["Вълко Червенков", "Иван Тодоров \u2014 Горуня", "Васил Коларов", "Михаил Горбачов"],
+    ans: 1,
+    explain: "Иван Тодоров \u2014 Горуня организира опит за военен преврат. Разкрит е и е разстрелян."
+  },
+  {
+    q: "Какво предлага Живков през 1963 г.?",
+    opts: ["Да влезе в НАТО", "България да стане 16-а република на СССР", "Да закрие БКП", "Обединение с Югославия"],
+    ans: 1,
+    explain: "Живков предлага България да стане 16-а съюзна република на СССР, но опитът не успява."
+  },
+  {
+    q: "Откъде получава България евтин петрол?",
+    opts: ["От Ирак", "От Турция", "От СССР", "От Гърция"],
+    ans: 2,
+    explain: "България получава евтин петрол от СССР и го реекспортира на Запад за твърда валута."
+  },
+  {
+    q: "Какъв е комбинатът \xABКремиковци\xBB?",
+    opts: ["Химически завод", "Металургичен комбинат", "Атомна централа", "Текстилна фабрика"],
+    ans: 1,
+    explain: "Кремиковци е металургичен комбинат, изграден със съветски (остарели) технологии."
+  },
+  {
+    q: "Каква е официалната идеология на режима?",
+    opts: ["Либерализъм", "Марксизъм-ленинизъм", "Фашизъм", "Национализъм"],
+    ans: 1,
+    explain: "Официалната идеология е марксизъм-ленинизъм \u2014 колективът над личността."
+  },
+  {
+    q: "Как Живков се справя с противниците?",
+    opts: ["Изпраща ги в лагери", "Изпраща ги на дипломатически постове далеч", "Осъжда ги на смърт", "Не прави нищо"],
+    ans: 1,
+    explain: "Живков отстранява противниците внимателно \u2014 изпраща ги на постове далеч от властта."
+  },
+  {
+    q: "Какво е характерно за социалната система?",
+    opts: ["Частни болници", "Почивки, пенсии, здравеопазване, но дефицит на стоки", "Свободен пазар", "Липса на образование"],
+    ans: 1,
+    explain: "Хората получават почивки, пенсии, здравеопазване, образование \u2014 но има дефицит и опашки."
+  },
+  {
+    q: "Кога е свален Тодор Живков?",
+    opts: ["9 май 1985 г.", "10 ноември 1989 г.", "1 януари 1990 г.", "25 декември 1991 г."],
+    ans: 1,
+    explain: "Тодор Живков е свален на 10 ноември 1989 г. след 33 години на власт."
+  }
+];
+
+var answered = 0, correct = 0;
+function buildQuiz() {
+  var c = document.getElementById('quizContainer');
+  c.innerHTML = ''; answered = 0; correct = 0;
+  updateProgress();
+  document.getElementById('scoreBar').classList.remove('show');
+  for (var i = 0; i < questions.length; i++) {
+    var q = questions[i];
+    var div = document.createElement('div');
+    div.className = 'quiz-q';
+    var optsHtml = '';
+    for (var j = 0; j < q.opts.length; j++) {
+      optsHtml += '<div class="q-opt" onclick="answer(' + i + ',' + j + ')">' + q.opts[j] + '</div>';
+    }
+    div.innerHTML =
+      '<div class="q-num">\u0412\u044A\u043F\u0440\u043E\u0441 ' + (i + 1) + '</div>' +
+      '<div class="q-text">' + q.q + '</div>' +
+      '<div class="q-options" id="opts-' + i + '">' + optsHtml + '</div>' +
+      '<div class="q-explain" id="expl-' + i + '">' + q.explain + '</div>';
+    c.appendChild(div);
+  }
+}
+function answer(qi, oi) {
+  var opts = document.querySelectorAll('#opts-' + qi + ' .q-opt');
+  if (opts[0].classList.contains('disabled')) return;
+  answered++;
+  if (oi === questions[qi].ans) correct++;
+  for (var j = 0; j < opts.length; j++) {
+    opts[j].classList.add('disabled');
+    if (j === questions[qi].ans) opts[j].classList.add('correct');
+    else if (j === oi) opts[j].classList.add('wrong');
+  }
+  document.getElementById('expl-' + qi).classList.add('show');
+  updateProgress();
+  if (answered === questions.length) showScore();
+}
+function updateProgress() {
+  document.getElementById('progText').textContent = answered + ' от ' + questions.length;
+  document.getElementById('progFill').style.width = (answered / questions.length * 100) + '%';
+}
+function showScore() {
+  var bar = document.getElementById('scoreBar');
+  bar.classList.add('show');
+  document.getElementById('scoreNum').textContent = correct + '/' + questions.length;
+  var pct = correct / questions.length;
+  var msg;
+  if (pct === 1) msg = '\u{1F31F} Отлично! Знаеш всичко!';
+  else if (pct >= 0.7) msg = '\u{1F44D} Добър резултат! Повтори грешките.';
+  else if (pct >= 0.5) msg = '\u{1F4D6} Не е зле, прочети конспекта отново.';
+  else msg = '\u{1F4DA} Прочети конспекта още веднъж и опитай пак!';
+  document.getElementById('scoreMsg').textContent = msg;
+  bar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function resetQuiz() {
+  buildQuiz();
+  window.scrollTo({ top: document.getElementById('tab-quiz').offsetTop - 80, behavior: 'smooth' });
+}
+buildQuiz();
+</script>
+</body>
+</html>
