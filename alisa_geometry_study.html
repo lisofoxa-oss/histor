@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тригонометрия и геометрия — Подготовка за Алиса</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+  :root {
+    --bg: #faf6f0;
+    --bg2: #f3ede4;
+    --card: #ffffff;
+    --text: #2c2418;
+    --text2: #6b5d4d;
+    --accent: #b44a2d;
+    --accent2: #d4783e;
+    --green: #3a7d44;
+    --green-bg: #e8f5e9;
+    --blue: #2d5fa1;
+    --blue-bg: #e8f0fa;
+    --gold: #c9a84c;
+    --gold-bg: #fdf6e3;
+    --border: #e4ddd3;
+    --shadow: 0 2px 12px rgba(44,36,24,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #2c2418 0%, #4a3728 40%, #6b4d32 100%);
+    color: #faf6f0;
+    padding: 60px 24px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-conic-gradient(from 0deg, transparent 0deg 8deg, rgba(255,255,255,0.015) 8deg 10deg);
+    animation: heroSpin 120s linear infinite;
+  }
+  @keyframes heroSpin { to { transform: rotate(360deg); } }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .hero .sub {
+    font-size: 15px;
+    opacity: 0.7;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    position: relative;
+  }
+  .hero .emoji { font-size: 36px; margin-bottom: 12px; display: block; position: relative; }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 32px 20px 80px; }
+
+  .intro-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 36px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--gold);
+  }
+  .intro-card p { color: var(--text2); font-size: 15px; }
+
+  /* Problem sections */
+  .problem-section {
+    margin-bottom: 44px;
+    animation: fadeIn 0.5s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; } }
+
+  .problem-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .problem-num {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .problem-topic {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .problem-topic-tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 600;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  .problem-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+
+  .problem-statement {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+  .options span { color: var(--text2); }
+  .options .correct { color: var(--green); font-weight: 600; }
+
+  /* Solution block */
+  .solution-block {
+    background: var(--blue-bg);
+    border: 1px solid #c8d8ea;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 12px;
+  }
+  .solution-block h4 {
+    color: var(--blue);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .solution-block .step {
+    margin-bottom: 14px;
+    padding-left: 16px;
+    border-left: 3px solid #a8c4e0;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .solution-block .step:last-child { margin-bottom: 0; }
+  .step-label {
+    font-weight: 700;
+    color: var(--blue);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .answer-box {
+    background: var(--green-bg);
+    border: 1px solid #a8d5b0;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-top: 14px;
+    color: var(--green);
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  /* Practice section */
+  .practice-section {
+    background: var(--gold-bg);
+    border: 1px solid #e8dbb8;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 12px;
+  }
+  .practice-section h4 {
+    color: #8a6d1b;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .practice-item {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid #e0d5b8;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .practice-item:last-child { margin-bottom: 0; }
+  .practice-item .q { font-size: 15px; margin-bottom: 8px; line-height: 1.7; }
+  .practice-item .opts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+    font-size: 14px;
+    color: var(--text2);
+  }
+
+  /* Toggle button */
+  .toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid #d4c99e;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #8a6d1b;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .toggle-btn:hover { background: rgba(255,255,255,0.95); border-color: #c4b47e; }
+
+  .hidden-solution {
+    display: none;
+    margin-top: 12px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    border: 1px solid #d8ccaa;
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .hidden-solution.open { display: block; animation: fadeIn 0.3s ease; }
+  .hidden-solution .ans { color: var(--green); font-weight: 700; margin-top: 8px; }
+
+  /* Math formatting */
+  .m { font-style: italic; font-family: 'Cormorant Garamond', 'Times New Roman', serif; }
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 3px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9em;
+    line-height: 1.2;
+  }
+  .frac .num { border-bottom: 1.5px solid currentColor; padding: 0 4px 1px; }
+  .frac .den { padding: 1px 4px 0; }
+
+  sup { font-size: 0.75em; vertical-align: super; }
+  .sqrt { white-space: nowrap; }
+  .sqrt::before { content: '√'; }
+
+  .formula {
+    display: block;
+    background: rgba(44,36,24,0.03);
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin: 8px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  .key-idea {
+    background: #fff3e0;
+    border-left: 4px solid var(--accent2);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+    color: #7a4a1a;
+  }
+  .key-idea strong { color: var(--accent); }
+
+  hr.divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 40px 0;
+  }
+
+  @media (max-width: 600px) {
+    .options, .practice-item .opts { grid-template-columns: 1fr; }
+    .problem-card, .solution-block, .practice-section { padding: 16px 18px; }
+    .container { padding: 20px 14px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="emoji">📐✨</span>
+  <h1>Тригонометрия и геометрия</h1>
+  <div class="sub">ПОДРОБНИ РЕШЕНИЯ И ЗАДАЧИ ЗА УПРАЖНЕНИЕ · ЗА АЛИСА</div>
+</div>
+
+<div class="container">
+
+<div class="intro-card">
+  <p>Привет, Алиса! 👋 Тук ще намериш подробни решения на всичките 8 задачи от учебника — стъпка по стъпка, с обяснения. След всяка задача има <strong>две допълнителни задачи</strong> от същия тип за упражнение. Решенията са скрити — натисни бутона, когато искаш да провериш своя отговор. Успех! 🍀</p>
+</div>
+
+<!-- ═══════════════ ЗАДАЧА 1 ═══════════════ -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">1</div>
+    <div>
+      <div class="problem-topic-tag">Тригонометрия</div>
+      <div class="problem-topic">Намиране на tg<span class="m">α</span> по sin<span class="m">α</span> и квадрант</div>
+    </div>
+  </div>
+
+  <div class="problem-card">
+    <div class="problem-statement">
+      Ако sin<span class="m">α</span> = <span class="frac"><span class="num">12</span><span class="den">13</span></span> и <span class="m">α</span> ∈ (90°; 180°), то tg<span class="m">α</span> е:
+    </div>
+    <div class="options">
+      <span>А) <span class="frac"><span class="num">12</span><span class="den">5</span></span></span>
+      <span class="correct">Б) −<span class="frac"><span class="num">12</span><span class="den">5</span></span> ✓</span>
+      <span>В) <span class="frac"><span class="num">5</span><span class="den">12</span></span></span>
+      <span>Г) −<span class="frac"><span class="num">5</span><span class="den">12</span></span></span>
+    </div>
+  </div>
+
+  <div class="solution-block">
+    <h4>📘 Подробно решение</h4>
+
+    <div class="key-idea">
+      <strong>Ключова идея:</strong> Знаем sin<span class="m">α</span>. Намираме cos<span class="m">α</span> от основното тригонометрично тъждество, после tg<span class="m">α</span> = sin<span class="m">α</span> / cos<span class="m">α</span>. Важно е да определим <strong>знака</strong> на cos<span class="m">α</span> по квадранта.
+    </div>
+
+    <div class="step">
+      <span class="step-label">Стъпка 1 — Тъждество</span>
+      sin²<span class="m">α</span> + cos²<span class="m">α</span> = 1<br>
+      cos²<span class="m">α</span> = 1 − sin²<span class="m">α</span> = 1 − <span class="frac"><span class="num">144</span><span class="den">169</span></span> = <span class="frac"><span class="num">25</span><span class="den">169</span></span>
+    </div>
+    <div class="step">
+      <span class="step-label">Стъпка 2 — Знак на cos α</span>
+      <span class="m">α</span> ∈ (90°; 180°) → II квадрант → cos<span class="m">α</span> &lt; 0<br>
+      Следователно cos<span class="m">α</span> = −<span class="frac"><span class="num">5</span><span class="den">13</span></span>
+    </div>
+    <div class="step">
+      <span class="step-label">Стъпка 3 — Намираме tg α</span>
+      tg<span class="m">α</span> = <span class="frac"><span class="num">sin<span class="m">α</span></span><span class="den">cos<span class="m">α</span></span></span> = <span class="frac"><span class="num"><sup>12</sup>/<sub>13</sub></span><span class="den"><sup>−5</sup>/<sub>13</sub></span></span> = −<span class="frac"><span class="num">12</span><span class="den">5</span></span>
+    </div>
+
+    <div class="answer-box">✓ Отговор: Б) tg<span class="m">α</span> = −12/5</div>
+  </div>
+
+  <div class="practice-section">
+    <h4>✏️ Задачи за упражнение</h4>
+
+    <div class="practice-item">
+      <div class="q"><strong>1.1.</strong> Ако sin<span class="m">α</span> = <span class="frac"><span class="num">4</span><span class="den">5</span></span> и <span class="m">α</span> ∈ (90°; 180°), намерете tg<span class="m">α</span>.</div>
+      <div class="opts">
+        <span>А) <span class="frac"><span class="num">4</span><span class="den">3</span></span></span>
+        <span>Б) −<span class="frac"><span class="num">4</span><span class="den">3</span></span></span>
+        <span>В) <span class="frac"><span class="num">3</span><span class="den">4</span></span></span>
+        <span>Г) −<span class="frac"><span class="num">3</span><span class="den">4</span></span></span>
+      </div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        cos²<span class="m">α</span> = 1 − 16/25 = 9/25<br>
+        <span class="m">α</span> ∈ II квадрант → cos<span class="m">α</span> = −3/5<br>
+        tg<span class="m">α</span> = (4/5) / (−3/5) = −4/3
+        <div class="ans">Отговор: Б) −4/3</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="q"><strong>1.2.</strong> Ако cos<span class="m">α</span> = −<span class="frac"><span class="num">5</span><span class="den">13</span></span> и <span class="m">α</span> ∈ (90°; 180°), намерете tg<span class="m">α</span>.</div>
+      <div class="opts">
+        <span>А) <span class="frac"><span class="num">12</span><span class="den">5</span></span></span>
+        <span>Б) −<span class="frac"><span class="num">12</span><span class="den">5</span></span></span>
+        <span>В) −<span class="frac"><span class="num">5</span><span class="den">12</span></span></span>
+        <span>Г) <span class="frac"><span class="num">5</span><span class="den">12</span></span></span>
+      </div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        sin²<span class="m">α</span> = 1 − 25/169 = 144/169<br>
+        <span class="m">α</span> ∈ II квадрант → sin<span class="m">α</span> = +12/13 (синус е положителен в II квадрант)<br>
+        tg<span class="m">α</span> = (12/13) / (−5/13) = −12/5
+        <div class="ans">Отговор: Б) −12/5</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════ ЗАДАЧА 2 ═══════════════ -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">2</div>
+    <div>
+      <div class="problem-topic-tag">Описана окръжност</div>
+      <div class="problem-topic">Синусова теорема — диаметър</div>
+    </div>
+  </div>
+
+  <div class="problem-card">
+    <div class="problem-statement">
+      За △ABC е дадено, че BC = 2√3 cm, ∠ACB = 32° и ∠ABC = 88°. Диаметърът на описаната около △ABC окръжност е:
+    </div>
+    <div class="options">
+      <span class="correct">А) 4 cm ✓</span>
+      <span>Б) 2 cm</span>
+      <span>В) 6 cm</span>
+      <span>Г) 4√3 cm</span>
+    </div>
+  </div>
+
+  <div class="solution-block">
+    <h4>📘 Подробно решение</h4>
+
+    <div class="key-idea">
+      <strong>Ключова идея:</strong> По синусовата теорема: <span class="frac"><span class="num"><span class="m">a</span></span><span class="den">sin <span class="m">A</span></span></span> = 2<span class="m">R</span> (диаметър). Страна <span class="m">a</span> стои срещу ъгъл <span class="m">A</span>.
+    </div>
+
+    <div class="step">
+      <span class="step-label">Стъпка 1 — Намираме ъгъл A</span>
+      ∠A = 180° − 32° − 88° = 60°
+    </div>
+    <div class="step">
+      <span class="step-label">Стъпка 2 — Прилагаме синусова теорема</span>
+      Страната BC = 2√3 стои срещу ъгъл A = 60°.<br>
+      2<span class="m">R</span> = <span class="frac"><span class="num">BC</span><span class="den">sin A</span></span> = <span class="frac"><span class="num">2√3</span><span class="den">sin 60°</span></span> = <span class="frac"><span class="num">2√3</span><span class="den">√3/2</span></span> = 2√3 · <span class="frac"><span class="num">2</span><span class="den">√3</span></span> = 4
+    </div>
+
+    <div class="answer-box">✓ Отговор: А) Диаметърът е 4 cm</div>
+  </div>
+
+  <div class="practice-section">
+    <h4>✏️ Задачи за упражнение</h4>
+
+    <div class="practice-item">
+      <div class="q"><strong>2.1.</strong> В △ABC: AB = 8 cm, ∠A = 75°, ∠B = 45°. Намерете диаметъра на описаната окръжност.</div>
+      <div class="opts">
+        <span>А) 8 cm</span>
+        <span>Б) 8√3 cm</span>
+        <span>В) 16√3/3 cm</span>
+        <span>Г) 4√3 cm</span>
+      </div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        ∠C = 180° − 75° − 45° = 60°<br>
+        AB стои срещу ∠C.<br>
+        2R = AB / sin C = 8 / sin 60° = 8 / (√3/2) = 16/√3 = 16√3/3 ≈ 9,24 cm
+        <div class="ans">Отговор: В) 16√3/3 cm</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="q"><strong>2.2.</strong> В △ABC: BC = 5 cm, ∠A = 30°. Намерете радиуса <span class="m">R</span> на описаната окръжност.</div>
+      <div class="opts">
+        <span>А) 5 cm</span>
+        <span>Б) 10 cm</span>
+        <span>В) 2,5 cm</span>
+        <span>Г) 5√3 cm</span>
+      </div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        BC стои срещу ∠A.<br>
+        2R = BC / sin A = 5 / sin 30° = 5 / 0,5 = 10<br>
+        R = 5 cm
+        <div class="ans">Отговор: А) R = 5 cm</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════ ЗАДАЧА 3 ═══════════════ -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">3</div>
+    <div>
+      <div class="problem-topic-tag">Класификация на триъгълници</div>
+      <div class="problem-topic">Вид на триъгълник по страните</div>
+    </div>
+  </div>
+
+  <div class="problem-card">
+    <div class="problem-statement">
+      Определете вида на триъгълник със страни 7 cm, 8 cm и 12 cm спрямо ъглите.
+    </div>
+    <div class="options">
+      <span>А) остроъгълен</span>
+      <span>Б) правоъгълен</span>
+      <span class="correct">В) тъпоъгълен ✓</span>
+      <span>Г) не може да се определи</span>
+    </div>
+  </div>
+
+  <div class="solution-block">
+    <h4>📘 Подробно решение</h4>
+
+    <div class="key-idea">
+      <strong>Ключова идея:</strong> Нека <span class="m">c</span> е най-дългата страна. Сравняваме <span class="m">c</span>² с <span class="m">a</span>² + <span class="m">b</span>²:<br>
+      • Ако <span class="m">c</span>² &lt; <span class="m">a</span>² + <span class="m">b</span>² → <strong>остроъгълен</strong><br>
+      • Ако <span class="m">c</span>² = <span class="m">a</span>² + <span class="m">b</span>² → <strong>правоъгълен</strong><br>
+      • Ако <span class="m">c</span>² &gt; <span class="m">a</span>² + <span class="m">b</span>² → <strong>тъпоъгълен</strong>
+    </div>
+
+    <div class="step">
+      <span class="step-label">Стъпка 1</span>
+      Най-дълга страна: <span class="m">c</span> = 12<br>
+      <span class="m">c</span>² = 144
+    </div>
+    <div class="step">
+      <span class="step-label">Стъпка 2</span>
+      <span class="m">a</span>² + <span class="m">b</span>² = 7² + 8² = 49 + 64 = 113
+    </div>
+    <div class="step">
+      <span class="step-label">Стъпка 3 — Сравнение</span>
+      144 &gt; 113, т.е. <span class="m">c</span>² &gt; <span class="m">a</span>² + <span class="m">b</span>² → триъгълникът е <strong>тъпоъгълен</strong>.
+    </div>
+
+    <div class="answer-box">✓ Отговор: В) тъпоъгълен</div>
+  </div>
+
+  <div class="practice-section">
+    <h4>✏️ Задачи за упражнение</h4>
+
+    <div class="practice-item">
+      <div class="q"><strong>3.1.</strong> Определете вида на триъгълник със страни 5 cm, 7 cm и 9 cm.</div>
+      <div class="opts">
+        <span>А) остроъгълен</span>
+        <span>Б) правоъгълен</span>
+        <span>В) тъпоъгълен</span>
+        <span>Г) не може да се определи</span>
+      </div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        Най-дълга страна: 9. Проверяваме: 9² = 81.<br>
+        5² + 7² = 25 + 49 = 74.<br>
+        81 > 74 → тъпоъгълен.
+        <div class="ans">Отговор: В) тъпоъгълен</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="q"><strong>3.2.</strong> Определете вида на триъгълник със страни 6 cm, 8 cm и 10 cm.</div>
+      <div class="opts">
+        <span>А) остроъгълен</span>
+        <span>Б) правоъгълен</span>
+        <span>В) тъпоъгълен</span>
+        <span>Г) не може да се определи</span>
+      </div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        Най-дълга страна: 10. Проверяваме: 10² = 100.<br>
+        6² + 8² = 36 + 64 = 100.<br>
+        100 = 100 → правоъгълен!
+        <div class="ans">Отговор: Б) правоъгълен</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════ ЗАДАЧА 4 ═══════════════ -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">4</div>
+    <div>
+      <div class="problem-topic-tag">Вписана окръжност</div>
+      <div class="problem-topic">Радиус на вписана окръжност</div>
+    </div>
+  </div>
+
+  <div class="problem-card">
+    <div class="problem-statement">
+      Равнобедрен триъгълник с основа 6 cm и бедро 5 cm. Намерете радиуса на вписаната в триъгълника окръжност.
+    </div>
+    <div class="options">
+      <span class="correct">А) 1,5 cm ✓</span>
+      <span>Б) 3 cm</span>
+      <span>В) 4/3 cm</span>
+      <span>Г) 2,5 cm</span>
+    </div>
+  </div>
+
+  <div class="solution-block">
+    <h4>📘 Подробно решение</h4>
+
+    <div class="key-idea">
+      <strong>Ключова идея:</strong> Формулата <span class="m">r</span> = <span class="frac"><span class="num"><span class="m">S</span></span><span class="den"><span class="m">p</span></span></span>, където <span class="m">S</span> е лицето, а <span class="m">p</span> е полупериметърът.
+    </div>
+
+    <div class="step">
+      <span class="step-label">Стъпка 1 — Полупериметър</span>
+      <span class="m">p</span> = (6 + 5 + 5) / 2 = 16 / 2 = 8 cm
+    </div>
+    <div class="step">
+      <span class="step-label">Стъпка 2 — Височина</span>
+      Височината към основата разделя основата на 3 + 3.<br>
+      <span class="m">h</span> = √(5² − 3²) = √(25 − 9) = √16 = 4 cm
+    </div>
+    <div class="step">
+      <span class="step-label">Стъпка 3 — Лице</span>
+      <span class="m">S</span> = ½ · 6 · 4 = 12 cm²
+    </div>
+    <div class="step">
+      <span class="step-label">Стъпка 4 — Радиус</span>
+      <span class="m">r</span> = <span class="m">S</span> / <span class="m">p</span> = 12 / 8 = 1,5 cm
+    </div>
+
+    <div class="answer-box">✓ Отговор: А) r = 1,5 cm</div>
+  </div>
+
+  <div class="practice-section">
+    <h4>✏️ Задачи за упражнение</h4>
+
+    <div class="practice-item">
+      <div class="q"><strong>4.1.</strong> Правоъгълен триъгълник с катети 6 cm и 8 cm (хипотенуза 10 cm). Намерете радиуса на вписаната окръжност.</div>
+      <div class="opts">
+        <span>А) 1 cm</span>
+        <span>Б) 2 cm</span>
+        <span>В) 3 cm</span>
+        <span>Г) 2,5 cm</span>
+      </div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        p = (6 + 8 + 10) / 2 = 12<br>
+        S = ½ · 6 · 8 = 24<br>
+        r = S / p = 24 / 12 = 2 cm
+        <div class="ans">Отговор: Б) r = 2 cm</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="q"><strong>4.2.</strong> Равностранен триъгълник със страна 6 cm. Намерете радиуса на вписаната окръжност.</div>
+      <div class="opts">
+        <span>А) √3 cm</span>
+        <span>Б) 2 cm</span>
+        <span>В) 2√3 cm</span>
+        <span>Г) 3 cm</span>
+      </div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        p = (6 + 6 + 6) / 2 = 9<br>
+        S = (√3 / 4) · 6² = (√3 / 4) · 36 = 9√3<br>
+        r = S / p = 9√3 / 9 = √3 ≈ 1,73 cm
+        <div class="ans">Отговор: А) r = √3 cm</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════ ЗАДАЧА 5 ═══════════════ -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">5</div>
+    <div>
+      <div class="problem-topic-tag">Височина в триъгълник</div>
+      <div class="problem-topic">Разстояние от връх до страна</div>
+    </div>
+  </div>
+
+  <div class="problem-card">
+    <div class="problem-statement">
+      В △ABC: AC = 5 cm, BC = 8 cm, ∠ACB = 60°. Намерете разстоянието от връх A до страната BC.
+    </div>
+    <div class="options">
+      <span>А) 5 cm</span>
+      <span class="correct">Б) 5√3/2 cm ✓</span>
+      <span>В) 2√3 cm</span>
+      <span>Г) 7 cm</span>
+    </div>
+  </div>
+
+  <div class="solution-block">
+    <h4>📘 Подробно решение</h4>
+
+    <div class="key-idea">
+      <strong>Ключова идея:</strong> Разстоянието от A до BC е височината <span class="m">h</span><sub>A</sub> към BC. Спускаме перпендикуляр AH ⊥ BC. В правоъгълния △AHC: <span class="m">h</span> = AC · sin C.
+    </div>
+
+    <div class="step">
+      <span class="step-label">Стъпка 1 — Височина</span>
+      Спускаме перпендикуляр AH от A до правата BC.<br>
+      В правоъгълния △AHC: AH = AC · sin(∠ACB)<br>
+      AH = 5 · sin 60° = 5 · √3/2 = 5√3/2
+    </div>
+    <div class="step">
+      <span class="step-label">Проверка чрез лице</span>
+      S = ½ · AC · BC · sin C = ½ · 5 · 8 · sin 60° = 20 · √3/2 = 10√3<br>
+      S = ½ · BC · h → 10√3 = ½ · 8 · h → h = 10√3 / 4 = 5√3/2 ✓
+    </div>
+
+    <div class="answer-box">✓ Отговор: Б) h = 5√3/2 ≈ 4,33 cm</div>
+  </div>
+
+  <div class="practice-section">
+    <h4>✏️ Задачи за упражнение</h4>
+
+    <div class="practice-item">
+      <div class="q"><strong>5.1.</strong> В △ABC: AC = 8 cm, BC = 10 cm, ∠ACB = 45°. Намерете разстоянието от A до страната BC.</div>
+      <div class="opts">
+        <span>А) 4 cm</span>
+        <span>Б) 4√2 cm</span>
+        <span>В) 8√2 cm</span>
+        <span>Г) 5√2 cm</span>
+      </div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        h = AC · sin(∠ACB) = 8 · sin 45° = 8 · √2/2 = 4√2 ≈ 5,66 cm<br>
+        <em>Проверка:</em> S = ½ · 8 · 10 · sin 45° = 40 · √2/2 = 20√2.<br>
+        S = ½ · 10 · h → h = 2 · 20√2 / 10 = 4√2 ✓
+        <div class="ans">Отговор: Б) 4√2 cm</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="q"><strong>5.2.</strong> В △ABC: AC = 12 cm, BC = 5 cm, ∠ACB = 30°. Намерете разстоянието от A до страната BC.</div>
+      <div class="opts">
+        <span>А) 3 cm</span>
+        <span>Б) 6 cm</span>
+        <span>В) 6√3 cm</span>
+        <span>Г) 4 cm</span>
+      </div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        h = AC · sin(∠ACB) = 12 · sin 30° = 12 · 1/2 = 6 cm
+        <div class="ans">Отговор: Б) 6 cm</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════ ЗАДАЧА 6 ═══════════════ -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">6</div>
+    <div>
+      <div class="problem-topic-tag">Ъглополовяща</div>
+      <div class="problem-topic">Дължина на ъглополовяща</div>
+    </div>
+  </div>
+
+  <div class="problem-card">
+    <div class="problem-statement">
+      Намерете ъглополовящата на най-големия ъгъл в триъгълник със страни 12 cm, 9 cm и 14 cm.
+    </div>
+  </div>
+
+  <div class="solution-block">
+    <h4>📘 Подробно решение</h4>
+
+    <div class="key-idea">
+      <strong>Ключова идея:</strong> Най-големият ъгъл е срещу най-дългата страна. За дължината на ъглополовящата от ъгъл A:<br>
+      <span class="m">l</span><sub>A</sub>² = <span class="m">b</span> · <span class="m">c</span> · [1 − (<span class="frac"><span class="num"><span class="m">a</span></span><span class="den"><span class="m">b</span> + <span class="m">c</span></span></span>)²], където <span class="m">a</span> е страната срещу ъгъла.
+    </div>
+
+    <div class="step">
+      <span class="step-label">Стъпка 1 — Определяме ъгъла</span>
+      Най-дългата страна е <span class="m">a</span> = 14 → най-големият ъгъл A стои срещу нея.<br>
+      Другите две страни: <span class="m">b</span> = 12, <span class="m">c</span> = 9.
+    </div>
+    <div class="step">
+      <span class="step-label">Стъпка 2 — Прилагаме формулата</span>
+      <span class="m">l</span>² = 12 · 9 · [1 − (14 / (12 + 9))²]<br>
+      = 108 · [1 − (14/21)²]<br>
+      = 108 · [1 − (2/3)²]<br>
+      = 108 · [1 − 4/9]<br>
+      = 108 · 5/9<br>
+      = 60
+    </div>
+    <div class="step">
+      <span class="step-label">Стъпка 3</span>
+      <span class="m">l</span> = √60 = 2√15 ≈ 7,75 cm
+    </div>
+
+    <div class="answer-box">✓ Отговор: l = 2√15 ≈ 7,75 cm</div>
+  </div>
+
+  <div class="practice-section">
+    <h4>✏️ Задачи за упражнение</h4>
+
+    <div class="practice-item">
+      <div class="q"><strong>6.1.</strong> В равностранен триъгълник със страна 6 cm намерете дължината на ъглополовящата (от кой да е връх).</div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        a = b = c = 6<br>
+        l² = 6 · 6 · [1 − (6/12)²] = 36 · [1 − 1/4] = 36 · 3/4 = 27<br>
+        l = √27 = 3√3 ≈ 5,20 cm<br>
+        <em>(Забележка: в равностранен △ ъглополовящата = височина = медиана.)</em>
+        <div class="ans">Отговор: 3√3 cm</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="q"><strong>6.2.</strong> Равнобедрен триъгълник със страни 5, 5, 6. Намерете ъглополовящата на ъгъла между равните страни (т.е. ъгъла, срещу основата 6).</div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        Ъгълът е срещу страна a = 6. Другите страни: b = 5, c = 5.<br>
+        l² = 5 · 5 · [1 − (6/10)²] = 25 · [1 − 36/100] = 25 · 64/100 = 16<br>
+        l = 4 cm
+        <div class="ans">Отговор: 4 cm</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════ ЗАДАЧА 7 ═══════════════ -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">7</div>
+    <div>
+      <div class="problem-topic-tag">Медиана</div>
+      <div class="problem-topic">Формула за медиана — равнобедрен △</div>
+    </div>
+  </div>
+
+  <div class="problem-card">
+    <div class="problem-statement">
+      Основата на равнобедрен триъгълник е 2√2 cm, а медианата към бедрото е 2,5 cm. Намерете бедрото на триъгълника.
+    </div>
+  </div>
+
+  <div class="solution-block">
+    <h4>📘 Подробно решение</h4>
+
+    <div class="key-idea">
+      <strong>Ключова идея:</strong> Формула за медиана от връх C към страна AB:<br>
+      <span class="m">m</span><sub>c</sub>² = <span class="frac"><span class="num">2<span class="m">a</span>² + 2<span class="m">b</span>² − <span class="m">c</span>²</span><span class="den">4</span></span><br>
+      Тук <span class="m">a</span>, <span class="m">b</span>, <span class="m">c</span> са страните срещу върховете A, B, C.
+    </div>
+
+    <div class="step">
+      <span class="step-label">Стъпка 1 — Означения</span>
+      Нека AB = основа = 2√2 cm (= <span class="m">c</span>), а бедрата CA = CB = <span class="m">b</span> (= <span class="m">a</span>).<br>
+      Медианата към бедрото, например от A до средата на BC.<br>
+      Страна BC = <span class="m">a</span> = <span class="m">b</span> (бедро).
+    </div>
+    <div class="step">
+      <span class="step-label">Стъпка 2 — Формула</span>
+      Медиана от A до средата на BC (страна <span class="m">a</span>):<br>
+      <span class="m">m</span><sub>a</sub>² = (2<span class="m">c</span>² + 2<span class="m">b</span>² − <span class="m">a</span>²) / 4<br>
+      Тъй като <span class="m">a</span> = <span class="m">b</span>:<br>
+      <span class="m">m</span><sub>a</sub>² = (2<span class="m">c</span>² + 2<span class="m">b</span>² − <span class="m">b</span>²) / 4 = (2<span class="m">c</span>² + <span class="m">b</span>²) / 4
+    </div>
+    <div class="step">
+      <span class="step-label">Стъпка 3 — Заместваме</span>
+      <span class="m">c</span> = 2√2, <span class="m">c</span>² = 8, <span class="m">m</span> = 2,5<br>
+      2,5² = (2 · 8 + <span class="m">b</span>²) / 4<br>
+      6,25 = (16 + <span class="m">b</span>²) / 4<br>
+      25 = 16 + <span class="m">b</span>²<br>
+      <span class="m">b</span>² = 9<br>
+      <span class="m">b</span> = 3 cm
+    </div>
+
+    <div class="answer-box">✓ Отговор: Бедрото е 3 cm</div>
+  </div>
+
+  <div class="practice-section">
+    <h4>✏️ Задачи за упражнение</h4>
+
+    <div class="practice-item">
+      <div class="q"><strong>7.1.</strong> Равнобедрен триъгълник с основа 2 cm и медиана към бедрото 2 cm. Намерете бедрото.</div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        c = 2, c² = 4, m = 2<br>
+        m² = (2c² + b²) / 4<br>
+        4 = (8 + b²) / 4<br>
+        16 = 8 + b²<br>
+        b² = 8<br>
+        b = 2√2 ≈ 2,83 cm
+        <div class="ans">Отговор: 2√2 cm</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="q"><strong>7.2.</strong> Равнобедрен триъгълник с основа 4√2 cm и медиана към бедрото 5 cm. Намерете бедрото.</div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        c = 4√2, c² = 32, m = 5<br>
+        25 = (2 · 32 + b²) / 4<br>
+        100 = 64 + b²<br>
+        b² = 36<br>
+        b = 6 cm
+        <div class="ans">Отговор: 6 cm</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════ ЗАДАЧА 8 ═══════════════ -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">8</div>
+    <div>
+      <div class="problem-topic-tag">Комплексна задача</div>
+      <div class="problem-topic">Косинусова теорема + лице + <span class="m">r</span> и <span class="m">R</span></div>
+    </div>
+  </div>
+
+  <div class="problem-card">
+    <div class="problem-statement">
+      За тъпоъгълния △ABC: AB = 13 cm, AC = 15 cm и ∠ACB = 60°.<br>
+      а) Намерете страната BC.<br>
+      б) Намерете радиуса на вписаната и описаната окръжност.<br>
+      в) Намерете лицето на триъгълника.
+    </div>
+  </div>
+
+  <div class="solution-block">
+    <h4>📘 Подробно решение</h4>
+
+    <div class="key-idea">
+      <strong>Ключова идея:</strong> Косинусова теорема: <span class="m">c</span>² = <span class="m">a</span>² + <span class="m">b</span>² − 2<span class="m">ab</span> · cos C. Когато получим квадратно уравнение, проверяваме кой корен дава тъпоъгълен триъгълник.
+    </div>
+
+    <div class="step">
+      <span class="step-label">а) Стъпка 1 — Косинусова теорема</span>
+      AB² = AC² + BC² − 2 · AC · BC · cos(∠ACB)<br>
+      13² = 15² + BC² − 2 · 15 · BC · cos 60°<br>
+      169 = 225 + BC² − 2 · 15 · BC · ½<br>
+      169 = 225 + BC² − 15 · BC
+    </div>
+    <div class="step">
+      <span class="step-label">а) Стъпка 2 — Квадратно уравнение</span>
+      BC² − 15 · BC + 225 − 169 = 0<br>
+      BC² − 15 · BC + 56 = 0<br>
+      D = 225 − 224 = 1<br>
+      BC = (15 ± 1) / 2 → BC = 8 или BC = 7
+    </div>
+    <div class="step">
+      <span class="step-label">а) Стъпка 3 — Проверка за тъпоъгълен</span>
+      Ако BC = 8: страни 13, 15, 8. Най-дълга е 15.<br>
+      15² = 225 срещу 13² + 8² = 169 + 64 = 233. 225 &lt; 233 → <strong>остроъгълен</strong>. ✗<br><br>
+      Ако BC = 7: страни 13, 15, 7. Най-дълга е 15.<br>
+      15² = 225 срещу 13² + 7² = 169 + 49 = 218. 225 &gt; 218 → <strong>тъпоъгълен</strong>. ✓
+    </div>
+
+    <div class="answer-box" style="margin-bottom: 16px;">✓ а) BC = 7 cm</div>
+
+    <div class="step">
+      <span class="step-label">в) Лице (решаваме преди б)</span>
+      S = ½ · AC · BC · sin(∠ACB) = ½ · 15 · 7 · sin 60°<br>
+      = ½ · 105 · √3/2 = 105√3/4 ≈ 45,47 cm²
+    </div>
+
+    <div class="answer-box" style="margin-bottom: 16px;">✓ в) S = 105√3/4 cm²</div>
+
+    <div class="step">
+      <span class="step-label">б) Описана окръжност — R</span>
+      По синусовата теорема: AB / sin C = 2R<br>
+      2R = 13 / sin 60° = 13 / (√3/2) = 26/√3 = 26√3/3<br>
+      R = 13√3/3 ≈ 7,51 cm
+    </div>
+    <div class="step">
+      <span class="step-label">б) Вписана окръжност — r</span>
+      p = (13 + 15 + 7) / 2 = 35/2<br>
+      r = S / p = (105√3/4) / (35/2) = (105√3/4) · (2/35) = 210√3/140 = 3√3/2 ≈ 2,60 cm
+    </div>
+
+    <div class="answer-box">✓ б) R = 13√3/3 cm, r = 3√3/2 cm</div>
+  </div>
+
+  <div class="practice-section">
+    <h4>✏️ Задачи за упражнение</h4>
+
+    <div class="practice-item">
+      <div class="q"><strong>8.1.</strong> В тъпоъгълния △ABC: AB = 7 cm, AC = 8 cm, ∠ACB = 60°.<br>
+      а) Намерете BC. б) Намерете лицето. в) Намерете R и r.</div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        <strong>а)</strong> AB² = AC² + BC² − 2·AC·BC·cos 60°<br>
+        49 = 64 + BC² − 8·BC<br>
+        BC² − 8·BC + 15 = 0<br>
+        D = 64 − 60 = 4, BC = (8 ± 2)/2<br>
+        BC = 5 или BC = 3<br><br>
+        Проверка: BC = 5 → страни 7, 8, 5. 8² = 64 &lt; 49 + 25 = 74 → остроъгълен ✗<br>
+        BC = 3 → страни 7, 8, 3. 8² = 64 &gt; 49 + 9 = 58 → тъпоъгълен ✓<br>
+        <strong>BC = 3 cm</strong><br><br>
+        <strong>б)</strong> S = ½ · 8 · 3 · sin 60° = 12 · √3/2 = 6√3 ≈ 10,39 cm²<br><br>
+        <strong>в)</strong> 2R = AB / sin C = 7 / sin 60° = 7 / (√3/2) = 14/√3 = 14√3/3<br>
+        R = 7√3/3 ≈ 4,04 cm<br><br>
+        p = (7 + 8 + 3)/2 = 9<br>
+        r = S / p = 6√3 / 9 = 2√3/3 ≈ 1,15 cm
+        <div class="ans">Отговор: BC = 3, S = 6√3, R = 7√3/3, r = 2√3/3</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="q"><strong>8.2.</strong> В △ABC: AC = 5 cm, BC = 3 cm, ∠ACB = 120°.<br>
+      а) Намерете AB. б) Намерете лицето. в) Намерете R и r.</div>
+      <button class="toggle-btn" onclick="toggleSol(this)">👁 Покажи решение</button>
+      <div class="hidden-solution">
+        <strong>а)</strong> AB² = AC² + BC² − 2·AC·BC·cos 120°<br>
+        = 25 + 9 − 2·5·3·(−½)<br>
+        = 34 + 15 = 49<br>
+        <strong>AB = 7 cm</strong><br><br>
+        <strong>б)</strong> S = ½ · 5 · 3 · sin 120° = (15/2) · (√3/2) = 15√3/4 ≈ 6,50 cm²<br><br>
+        <strong>в)</strong> 2R = AB / sin C = 7 / sin 120° = 7 / (√3/2) = 14/√3 = 14√3/3<br>
+        R = 7√3/3 ≈ 4,04 cm<br><br>
+        p = (7 + 5 + 3)/2 = 15/2<br>
+        r = S / p = (15√3/4) / (15/2) = (15√3/4) · (2/15) = √3/2 ≈ 0,87 cm
+        <div class="ans">Отговор: AB = 7, S = 15√3/4, R = 7√3/3, r = √3/2</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="intro-card" style="border-left-color: var(--green); text-align: center;">
+  <p style="font-size: 17px; color: var(--green); font-weight: 600; margin-bottom: 6px;">🎉 Готово!</p>
+  <p>Браво, Алиса, че стигна до края! Ако нещо не е ясно — попитай, ще обясня по друг начин. 💪</p>
+</div>
+
+</div>
+
+<script>
+function toggleSol(btn) {
+  const sol = btn.nextElementSibling;
+  const isOpen = sol.classList.contains('open');
+  sol.classList.toggle('open');
+  btn.textContent = isOpen ? '👁 Покажи решение' : '🙈 Скрий решение';
+}
+</script>
+
+</body>
+</html>
